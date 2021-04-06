@@ -12,9 +12,11 @@ public class Obstacles : MonoBehaviour
     float leftB = -3.1f, rightB = 3.1f;
     [SerializeField] float deadlyObstaclePercent = 10;
     [SerializeField] float movingObstaclePercent = 10;
-    [SerializeField] int moveMultiplier = 6, deadMultiplier = 4;
+    [SerializeField] float rotateObstaclePercent = 10;
+    [SerializeField] int moveMultiplier = 8, deadMultiplier = 6, rotateMultiplier = 4;
     bool deadlyOn =false;
     bool movingOn = false;
+    bool rotateOn = false;
     int minimumDeadlyObstacleCount = 1;
     int currentDeadlyCount =0;
     void Start()
@@ -39,7 +41,9 @@ public class Obstacles : MonoBehaviour
                 int obstNumber = Random.Range(0,3);
                 Transform obs = Instantiate(obstacles[obstNumber],pos,Quaternion.Euler(0,0,ra));
                 obs.GetComponent<SpriteRenderer>().color = Color.black;
-                obs.localScale = new Vector3(xscale,yscale,1);
+                if(obs.gameObject.tag=="Circle") obs.localScale = new Vector3(xscale, xscale, 1);
+                else obs.localScale = new Vector3(xscale, yscale, 1);
+                
                 if (deadlyOn && currentDeadlyCount < minimumDeadlyObstacleCount)
                 {
                     currentDeadlyCount++;
@@ -59,10 +63,19 @@ public class Obstacles : MonoBehaviour
                         MakeMove(obs);
                     }
                 }
+                if(rotateOn)
+                {
+                    int percent = Random.Range(1, 101);
+                    if (percent <= rotateObstaclePercent)
+                    {
+                        MakeRotate(obs);
+                    }
+                }
             }
             multiplier++;
             if(multiplier>=deadMultiplier) deadlyOn = true;
             if(multiplier>=moveMultiplier) movingOn = true;
+            if(multiplier>=rotateMultiplier) rotateOn = true;
             if(deadlyOn)
             {
                 if (multiplier % 12 == 0) minimumDeadlyObstacleCount++;
@@ -74,8 +87,14 @@ public class Obstacles : MonoBehaviour
             if(movingOn)
             {
                 movingObstaclePercent += 0.45f;
-                if (movingObstaclePercent > 50) movingObstaclePercent = 50;
-                Debug.Log("MOve percent: " + movingObstaclePercent);
+                if (movingObstaclePercent > 40) movingObstaclePercent = 40;
+                Debug.Log("Move percent: " + movingObstaclePercent);
+            }
+            if(rotateOn)
+            {
+                rotateObstaclePercent += 0.15f;
+                if (deadlyObstaclePercent > 25) deadlyObstaclePercent = 25;
+                Debug.Log("Rotate percent: " + rotateObstaclePercent);
             }
         }
 
@@ -89,5 +108,9 @@ public class Obstacles : MonoBehaviour
     void MakeMove(Transform obstacle)
     {
         obstacle.gameObject.AddComponent<MovementObstacle>();
+    }
+
+    void MakeRotate(Transform obstacle){
+        obstacle.gameObject.AddComponent<Rotatable>();
     }
 }

@@ -414,6 +414,7 @@ MonoBehaviour:
   - {fileID: 8516725403241141426, guid: 8c3f26fbfbdfd42419b525977ad4b16e, type: 3}
   - {fileID: 5902890609596302711, guid: 5b3d90238a3def9428f122d9a6a9da39, type: 3}
   - {fileID: 2226149706743246413, guid: 45b1d9d47b1f2d942a0b6b802ef2587b, type: 3}
+  - {fileID: 8516725403241141426, guid: 3f8b3a61a5d0a7a429ce9f63a2be6ae2, type: 3}
   score: {fileID: 1698892499}
   multiplier: 1
   deadlyObstaclePercent: 10
