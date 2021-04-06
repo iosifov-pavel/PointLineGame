@@ -7,11 +7,12 @@ public class ScoreCount : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Text score;
+    public int scoreInt=0;
     int startPosition;
     int currentPosition;
     void Start()
     {
-        score.text = 0.ToString();
+        score.text = scoreInt.ToString();
         startPosition = (int)transform.position.y;
         if(startPosition<0) startPosition = 0;
     }
@@ -22,8 +23,9 @@ public class ScoreCount : MonoBehaviour
         currentPosition = (int)transform.position.y;
         if(currentPosition<0) currentPosition = 0;
         if(currentPosition>startPosition){
-            score.text = (2*currentPosition).ToString();
+            scoreInt = (currentPosition);
             startPosition = currentPosition;
+            score.text = scoreInt.ToString();
         }
     }
 }
