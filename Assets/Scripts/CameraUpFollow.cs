@@ -8,13 +8,31 @@ public class CameraUpFollow : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] bool followX = false;
     [SerializeField] Transform deathX;
+    bool switchSide = false;
     float maxTargetY;
     void Start()
     {
         maxTargetY = (target.position.y);
         if(!followX){
-            deathX.gameObject.SetActive(true);
+            //deathX.gameObject.SetActive(true);
         }
+    }
+    
+    void Update(){
+        if(target.position.x>=3.3f && !switchSide){
+            target.position = new Vector3(-3.3f,target.position.y,target.position.z);
+            StartCoroutine(SwitchDelay());
+        }
+        else if(target.position.x <= -3.3f && !switchSide){
+            target.position = new Vector3(3.3f, target.position.y, target.position.z);
+            StartCoroutine(SwitchDelay());
+        }
+    }
+
+    IEnumerator SwitchDelay(){
+        switchSide = true;
+        yield return new WaitForSeconds(0.2f);
+        switchSide = false;
     }
 
     // Update is called once per frame

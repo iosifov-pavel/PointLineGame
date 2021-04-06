@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &368536960
 Transform:
   m_ObjectHideFlags: 0
@@ -412,7 +412,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
   - {fileID: 8516725403241141426, guid: 8c3f26fbfbdfd42419b525977ad4b16e, type: 3}
-  - {fileID: 549338206100313226, guid: 14c86c6f5d5ac7146b9538b3a0c7ca58, type: 3}
   - {fileID: 5902890609596302711, guid: 5b3d90238a3def9428f122d9a6a9da39, type: 3}
   - {fileID: 2226149706743246413, guid: 45b1d9d47b1f2d942a0b6b802ef2587b, type: 3}
   score: {fileID: 1698892499}
@@ -601,6 +600,7 @@ RectTransform:
   m_Children:
   - {fileID: 1514196465}
   - {fileID: 1183750785}
+  - {fileID: 1536460226}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -925,12 +925,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536460223}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -360, y: -640, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 853540446}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1698892494
 GameObject:
@@ -945,6 +945,7 @@ GameObject:
   - component: {fileID: 1698892496}
   - component: {fileID: 1698892495}
   - component: {fileID: 1698892499}
+  - component: {fileID: 1698892500}
   m_Layer: 0
   m_Name: GameBall
   m_TagString: Player
@@ -1068,6 +1069,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 777973918}
   scoreInt: 0
+--- !u!114 &1698892500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698892494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ffcd471f7262734d82e8d8be5020861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dead: {fileID: -3071758926632865882, guid: 03cc33ac7f02d3f4aaa094fa97ba1707, type: 3}
+  isDead: 0
 --- !u!212 &3200899113231885248
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1132,7 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceRadiusPower: 1
-  bounceConstPower: 4
+  bounceConstPower: 11
   destroyable: 0
 --- !u!1 &3200899113231885250
 GameObject:
@@ -1145,7 +1160,6 @@ GameObject:
   - component: {fileID: 3200899113231885254}
   - component: {fileID: 3200899113231885249}
   - component: {fileID: 3200899113231885248}
-  - component: {fileID: 3200899113231885255}
   - component: {fileID: 3200899113231885251}
   m_Layer: 0
   m_Name: BounceSphere
@@ -1194,18 +1208,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3200899113231885255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3200899113231885250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f0198cfaefa7a4ebd86942b4def555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceRadiusPower: 1
-  bounceConstPower: 4
-  destroyable: 0
