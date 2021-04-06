@@ -20,11 +20,11 @@ public class Obstacles : MonoBehaviour
     {
         int x = score.scoreInt/20;
         Debug.Log(x);
-        if(score.scoreInt/15==multiplier){
+        if(score.scoreInt/12==multiplier){
             int obstacleCount = Random.Range(5,10);
             for(int i=0;i<=obstacleCount;i++){
                 float rx = Random.Range(leftB,rightB);
-                float ry = Random.Range(score.scoreInt+8,score.scoreInt+22);
+                float ry = Random.Range(score.scoreInt+9,score.scoreInt+21);
                 Vector3 pos = new Vector3(rx,ry,0);
                 float xscale = Random.Range(0.4f,2.2f);
                 float yscale = Random.Range(0.4f,2.2f);
