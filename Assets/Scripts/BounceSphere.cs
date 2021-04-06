@@ -6,7 +6,7 @@ public class BounceSphere : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float bounceRadiusPower = 1f;
-    [SerializeField] float bounceConstPower = 1.15f;
+    [SerializeField] float bounceConstPower = 1.25f;
     CircleCollider2D circleCollider;
     public bool destroyable = false;
     Rigidbody2D playerBody;
@@ -27,7 +27,8 @@ public class BounceSphere : MonoBehaviour
             Vector2 forceDirection = other.transform.position - transform.position;
             forceDirection.Normalize();
             //playerBody.velocity = Vector2.zero;
-            playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*1.15f),ForceMode2D.Impulse);
+            playerBody.velocity *= 0.75f;
+            playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*1.25f),ForceMode2D.Impulse);
             playerBody.velocity = Vector2.ClampMagnitude(playerBody.velocity,6*bounceRadiusPower);
             if(destroyable) Destroy(gameObject);
         }
