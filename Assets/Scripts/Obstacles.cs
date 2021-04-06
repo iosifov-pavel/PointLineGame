@@ -7,10 +7,12 @@ public class Obstacles : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Transform[] obstacles;
     [SerializeField] ScoreCount score;
-    bool doneGenerate = true;
-    int multiplier = 1;
+    //bool doneGenerate = true;
+    public int multiplier = 1;
     float leftB = -3.1f, rightB = 3.1f;
-    int deadlyObstaclePercent = 10;
+    [SerializeField] float deadlyObstaclePercent = 10;
+    [SerializeField] float movingObstaclePercent = 10;
+    [SerializeField] int moveMultiplier = 6, deadMultiplier = 4;
     bool deadlyOn =false;
     bool movingOn = false;
     int minimumDeadlyObstacleCount = 1;
@@ -49,13 +51,32 @@ public class Obstacles : MonoBehaviour
                         MakeDeadly(obs);
                     }
                 }
+                if(movingOn)
+                {
+                    int percent = Random.Range(1, 101);
+                    if (percent <= movingObstaclePercent)
+                    {
+                        MakeMove(obs);
+                    }
+                }
             }
             multiplier++;
-            if(multiplier>=4) deadlyOn = true;
-            currentDeadlyCount = 0;
-            deadlyObstaclePercent++;
-            if(deadlyObstaclePercent>50) deadlyObstaclePercent = 50;
-            Debug.Log("percent: "+deadlyObstaclePercent);
+            if(multiplier>=deadMultiplier) deadlyOn = true;
+            if(multiplier>=moveMultiplier) movingOn = true;
+            if(deadlyOn)
+            {
+                if (multiplier % 12 == 0) minimumDeadlyObstacleCount++;
+                currentDeadlyCount = 0;
+                deadlyObstaclePercent += 0.55f;
+                if (deadlyObstaclePercent > 50) deadlyObstaclePercent = 50;
+                Debug.Log("percent: " + deadlyObstaclePercent);
+            }
+            if(movingOn)
+            {
+                movingObstaclePercent += 0.45f;
+                if (movingObstaclePercent > 50) movingObstaclePercent = 50;
+                Debug.Log("MOve percent: " + movingObstaclePercent);
+            }
         }
 
     }
@@ -63,5 +84,10 @@ public class Obstacles : MonoBehaviour
     void MakeDeadly(Transform obstacle){
         obstacle.GetComponent<SpriteRenderer>().color = Color.red;
         obstacle.gameObject.AddComponent<DeathArea>();
+    }
+
+    void MakeMove(Transform obstacle)
+    {
+        obstacle.gameObject.AddComponent<MovementObstacle>();
     }
 }

@@ -415,6 +415,11 @@ MonoBehaviour:
   - {fileID: 5902890609596302711, guid: 5b3d90238a3def9428f122d9a6a9da39, type: 3}
   - {fileID: 2226149706743246413, guid: 45b1d9d47b1f2d942a0b6b802ef2587b, type: 3}
   score: {fileID: 1698892499}
+  multiplier: 1
+  deadlyObstaclePercent: 10
+  movingObstaclePercent: 15
+  moveMultiplier: 6
+  deadMultiplier: 4
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,8 +469,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 130, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 120.7, y: -2.1}
+  m_SizeDelta: {x: 210, y: 105.508545}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &777973918
 MonoBehaviour:
@@ -488,11 +493,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 44
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -714,8 +719,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103, y: -32}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 157.01, y: -69.75}
+  m_SizeDelta: {x: 268.01938, y: 105.50891}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183750786
 MonoBehaviour:
@@ -738,11 +743,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 44
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1082,7 +1087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: {fileID: -3071758926632865882, guid: 03cc33ac7f02d3f4aaa094fa97ba1707, type: 3}
-  isDead: 0
 --- !u!212 &3200899113231885248
 SpriteRenderer:
   m_ObjectHideFlags: 0

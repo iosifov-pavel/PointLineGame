@@ -6,7 +6,7 @@ public class PlayerControler : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Sprite dead;
-    public bool isDead = false;
+    //public bool isDead = false;
     void Start()
     {
         
@@ -15,9 +15,11 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDead)
-        {
-            GetComponent<SpriteRenderer>().sprite = dead;
-        }
+
+    }
+
+    public void MakeDead()
+    {
+        GetComponent<SpriteRenderer>().sprite = dead;
     }
 }

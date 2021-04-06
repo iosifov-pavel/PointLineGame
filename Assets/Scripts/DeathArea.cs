@@ -20,7 +20,7 @@ public class DeathArea : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag=="Player"){
             Debug.Log("game over");
-            other.gameObject.GetComponent<PlayerControler>().isDead = true;
+            other.gameObject.GetComponent<PlayerControler>().MakeDead();
             //Time.timeScale = 0;
             StartCoroutine(MainMenu());
         }
@@ -30,7 +30,7 @@ public class DeathArea : MonoBehaviour
         if (other.gameObject.tag == "Player"){
             Debug.Log("game over");
             //Time.timeScale = 0;
-            other.gameObject.GetComponent<PlayerControler>().isDead=true;
+            other.gameObject.GetComponent<PlayerControler>().MakeDead();
             StartCoroutine(MainMenu());
         } 
     }
