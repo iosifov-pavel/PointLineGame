@@ -10,16 +10,25 @@ public class PlayerControler : MonoBehaviour
     bool canSwitch = false;
     //public bool isDead = false;
     CircleCollider2D circleCollider;
+    Rigidbody2D rbbody;
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+        rbbody = GetComponent<Rigidbody2D>();
     }
 
     bool CheckColliders(Vector2 point){
-        if(circleCollider.OverlapPoint(point)){
+        Collider2D hit = Physics2D.OverlapPoint(point);
+        if(hit!=null){
             return true;
         }
         else return false;
+    }
+
+    void ReverseSpeed(){
+        Vector2 newSpeed = rbbody.velocity;
+        newSpeed.x*=-1;
+        rbbody.velocity = newSpeed;
     }
 
     IEnumerator SwitchDelay(){
@@ -33,15 +42,27 @@ public class PlayerControler : MonoBehaviour
     {
         if(transform.position.x>=3.2f && !switchSide){
             Vector2 point = new Vector3(-3.2f,transform.position.y,transform.position.z);
-            if(CheckColliders(point)) return;
-            else transform.position = point;
-            StartCoroutine(SwitchDelay());
+            if(CheckColliders(point)){
+                ReverseSpeed();
+                StartCoroutine(SwitchDelay());
+                return;
+            } 
+            else{
+                transform.position = point;
+                StartCoroutine(SwitchDelay());
+            } 
         }
         else if(transform.position.x <= -3.2f && !switchSide){
             Vector2 point = new Vector3(3.2f,transform.position.y,transform.position.z);
-            if(CheckColliders(point)) return;
-            else transform.position = point;
-            StartCoroutine(SwitchDelay());
+            if(CheckColliders(point)){
+                ReverseSpeed();
+                StartCoroutine(SwitchDelay());
+                return;
+            }
+            else{
+                transform.position = point;
+                StartCoroutine(SwitchDelay());
+            } 
         }
     }
 
