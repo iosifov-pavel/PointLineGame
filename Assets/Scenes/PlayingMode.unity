@@ -419,8 +419,10 @@ MonoBehaviour:
   multiplier: 1
   deadlyObstaclePercent: 10
   movingObstaclePercent: 15
+  rotateObstaclePercent: 10
   moveMultiplier: 6
   deadMultiplier: 4
+  rotateMultiplier: 4
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0

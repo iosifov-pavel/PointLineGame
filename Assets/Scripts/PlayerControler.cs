@@ -44,7 +44,6 @@ public class PlayerControler : MonoBehaviour
             Vector2 point = new Vector3(-3.2f,transform.position.y,transform.position.z);
             if(CheckColliders(point)){
                 ReverseSpeed();
-                StartCoroutine(SwitchDelay());
                 return;
             } 
             else{
@@ -56,7 +55,6 @@ public class PlayerControler : MonoBehaviour
             Vector2 point = new Vector3(3.2f,transform.position.y,transform.position.z);
             if(CheckColliders(point)){
                 ReverseSpeed();
-                StartCoroutine(SwitchDelay());
                 return;
             }
             else{
