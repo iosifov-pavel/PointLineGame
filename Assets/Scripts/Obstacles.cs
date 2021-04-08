@@ -30,7 +30,7 @@ public class Obstacles : MonoBehaviour
         int x = score.scoreInt/12;
         if(x==multiplier){
             Debug.Log("multiplier="+x);
-            int obstacleCount = Random.Range(5,10+multiplier/10);
+            int obstacleCount = Random.Range(5,8+multiplier/6);
             for(int i=0;i<=obstacleCount;i++){
                 float rx = Random.Range(leftB,rightB);
                 float ry = Random.Range(score.scoreInt+9,score.scoreInt+21);
