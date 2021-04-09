@@ -40,8 +40,8 @@ public class Obstacles : MonoBehaviour
             obsH.transform.parent = obstacleHolder;
             float randRange=1f;
             randRange = Random.Range(0f,1f);
-            int maxC = 8 + (int)(multiplier/8 * randRange);
-            int minC = 5 + (int)(multiplier/12 * randRange);
+            int maxC = 9 + (int)(multiplier/8 * randRange);
+            int minC = 6 + (int)(multiplier/12 * randRange);
             int obstacleCount = Random.Range(minC,maxC);
             for(int i=0;i<=obstacleCount;i++){
                 float rx = Random.Range(leftB,rightB);
