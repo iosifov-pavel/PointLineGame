@@ -336,9 +336,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spherePrefab: {fileID: 1212124121352615965, guid: a465bd0e9a677284cb597084e6913871,
     type: 3}
-  maxSpheresCount: 8
+  maxSpheresCount: 6
   destroyable: 0
   startText: {fileID: 1514196466}
+  player: {fileID: 1698892500}
+  maxScale: 12
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

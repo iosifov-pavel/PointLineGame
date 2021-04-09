@@ -6,6 +6,7 @@ public class PlayerControler : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Sprite dead;
+    bool isDead = false;
     bool switchSide = false;
     bool canSwitch = false;
     //public bool isDead = false;
@@ -68,5 +69,10 @@ public class PlayerControler : MonoBehaviour
     public void MakeDead()
     {
         GetComponent<SpriteRenderer>().sprite = dead;
+        isDead = true;
+    }
+
+    public bool CheckDead(){
+        return isDead;
     }
 }

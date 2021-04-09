@@ -12,6 +12,8 @@ public class CreateSphere : MonoBehaviour
     [SerializeField] int maxSpheresCount = 4;
     [SerializeField] bool destroyable = false;
     [SerializeField] Text startText;
+    [SerializeField] PlayerControler player;
+    [SerializeField] float maxScale = 12f;
     int spheresCount = 0;
     bool startGame = false;
     GameObject activeSphere = null;
@@ -26,6 +28,7 @@ public class CreateSphere : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player.CheckDead()) return;
         if(Input.GetMouseButton(0) && !startGame){
             startGame = true;
             startText.gameObject.SetActive(false);
@@ -50,6 +53,7 @@ public class CreateSphere : MonoBehaviour
         if(Input.GetMouseButton(0) && touchOnScreen && activeSphere!=null){
             Vector2 scale = activeSphere.transform.localScale;
             scale.x +=Time.deltaTime*8;
+            if(scale.x>maxScale) scale.x = maxScale;
             scale.y = scale.x;
             activeSphere.transform.localScale = scale;
         }
