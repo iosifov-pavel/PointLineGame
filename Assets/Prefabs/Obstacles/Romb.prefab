@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5902890609596302711}
   - component: {fileID: 3765093914002633517}
   - component: {fileID: 5309457311272556203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Romb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 6559908029461371380}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7cc549f1a43628f40a54b5964a1e0eda, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

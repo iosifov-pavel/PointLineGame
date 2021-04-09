@@ -14,6 +14,7 @@ public class Obstacles : MonoBehaviour
     [SerializeField] float movingObstaclePercent = 10;
     [SerializeField] float rotateObstaclePercent = 10;
     [SerializeField] int moveMultiplier = 8, deadMultiplier = 6, rotateMultiplier = 4;
+    [SerializeField] float moveAdd = 0.1f, deadAdd = 0.1f, rotateAdd = 0.1f;
     bool deadlyOn =false;
     bool movingOn = false;
     bool rotateOn = false;
@@ -30,43 +31,53 @@ public class Obstacles : MonoBehaviour
         int x = score.scoreInt/12;
         if(x==multiplier){
             Debug.Log("multiplier="+x);
-            int obstacleCount = Random.Range(5,8+multiplier/6);
+            int maxC = 8 + multiplier/8;
+            int minC = 5 + multiplier/10;
+            int obstacleCount = Random.Range(minC,maxC);
             for(int i=0;i<=obstacleCount;i++){
                 float rx = Random.Range(leftB,rightB);
                 float ry = Random.Range(score.scoreInt+9,score.scoreInt+21);
                 Vector3 pos = new Vector3(rx,ry,0);
-                float xscale = Random.Range(0.4f,2.2f + multiplier / 20f);
-                float yscale = Random.Range(0.4f,2.2f + multiplier / 20f);
+                float sizeRandom = Random.Range(0f,1f);
+                float maxS = 2.2f + multiplier / 24f * sizeRandom;
+                float minS = 0.4f;
+                float xscale = Random.Range(minS,maxS);
+                float yscale = Random.Range(minS,maxS);
                 float ra = Random.Range(0,360);
-                int obstNumber = Random.Range(0,3);
+                int obstNumber = Random.Range(0,4);
                 Transform obs = Instantiate(obstacles[obstNumber],pos,Quaternion.Euler(0,0,ra));
                 obs.GetComponent<SpriteRenderer>().color = Color.black;
-                if(obs.gameObject.tag=="Circle") obs.localScale = new Vector3(xscale, xscale, 1);
+                if(obs.gameObject.tag=="Circle"){
+                    obs.localScale = new Vector3(xscale, xscale, 1);
+                } 
                 else obs.localScale = new Vector3(xscale, yscale, 1);
-                
+                float randRange=1f;
                 if (deadlyOn && currentDeadlyCount < minimumDeadlyObstacleCount)
                 {
                     currentDeadlyCount++;
                     MakeDeadly(obs);
                 }
                 else if(deadlyOn && currentDeadlyCount >= minimumDeadlyObstacleCount){
-                    int percent = Random.Range(1,101);
-                    if(percent<=deadlyObstaclePercent){
+                    float percent = Random.Range(1,101);
+                    randRange = Random.Range(0f,1f);
+                    if(percent*randRange<=deadlyObstaclePercent){
                         MakeDeadly(obs);
                     }
                 }
                 if(movingOn)
                 {
-                    int percent = Random.Range(1, 101);
-                    if (percent <= movingObstaclePercent)
+                    float percent = Random.Range(1, 101);
+                    randRange = Random.Range(0f,1f);
+                    if (percent*randRange <= movingObstaclePercent)
                     {
                         MakeMove(obs);
                     }
                 }
                 if(rotateOn)
                 {
-                    int percent = Random.Range(1, 101);
-                    if (percent <= rotateObstaclePercent)
+                    float percent = Random.Range(1, 101);
+                    randRange = Random.Range(0f,1f);
+                    if (percent*randRange <= rotateObstaclePercent)
                     {
                         MakeRotate(obs);
                     }
@@ -78,21 +89,21 @@ public class Obstacles : MonoBehaviour
             if(multiplier>=rotateMultiplier) rotateOn = true;
             if(deadlyOn)
             {
-                if (multiplier % 12 == 0) minimumDeadlyObstacleCount++;
+                if (multiplier % 22 == 0) minimumDeadlyObstacleCount++;
                 currentDeadlyCount = 0;
-                deadlyObstaclePercent += 0.55f;
-                if (deadlyObstaclePercent > 50) deadlyObstaclePercent = 50;
+                deadlyObstaclePercent += deadAdd;
+                if (deadlyObstaclePercent > 45) deadlyObstaclePercent = 45;
                 Debug.Log("percent: " + deadlyObstaclePercent);
             }
             if(movingOn)
             {
-                movingObstaclePercent += 0.45f;
-                if (movingObstaclePercent > 40) movingObstaclePercent = 40;
+                movingObstaclePercent += moveAdd;
+                if (movingObstaclePercent > 35) movingObstaclePercent = 35;
                 Debug.Log("Move percent: " + movingObstaclePercent);
             }
             if(rotateOn)
             {
-                rotateObstaclePercent += 0.15f;
+                rotateObstaclePercent += rotateAdd;
                 if (deadlyObstaclePercent > 25) deadlyObstaclePercent = 25;
                 Debug.Log("Rotate percent: " + rotateObstaclePercent);
             }
@@ -102,6 +113,7 @@ public class Obstacles : MonoBehaviour
 
     void MakeDeadly(Transform obstacle){
         obstacle.GetComponent<SpriteRenderer>().color = Color.red;
+        obstacle.gameObject.layer = 9;
         obstacle.gameObject.AddComponent<DeathArea>();
     }
 

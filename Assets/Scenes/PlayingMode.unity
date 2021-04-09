@@ -421,8 +421,11 @@ MonoBehaviour:
   movingObstaclePercent: 15
   rotateObstaclePercent: 10
   moveMultiplier: 6
-  deadMultiplier: 4
+  deadMultiplier: 5
   rotateMultiplier: 4
+  moveAdd: 0.25
+  deadAdd: 0.35
+  rotateAdd: 0.15
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,7 +1173,7 @@ GameObject:
   - component: {fileID: 3200899113231885251}
   m_Layer: 0
   m_Name: BounceSphere
-  m_TagString: Untagged
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

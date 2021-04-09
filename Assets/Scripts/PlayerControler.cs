@@ -18,8 +18,9 @@ public class PlayerControler : MonoBehaviour
     }
 
     bool CheckColliders(Vector2 point){
-        Collider2D hit = Physics2D.OverlapPoint(point);
+        Collider2D hit = Physics2D.OverlapCircle(point, circleCollider.radius*transform.localScale.x);
         if(hit!=null){
+            //if(hit.gameObject.tag == "Bounce") return false;
             return true;
         }
         else return false;

@@ -9,7 +9,7 @@ public class Rotatable : MonoBehaviour
     Vector3 rotated;
     void Start()
     {
-        speed = Random.Range(-3,3);
+        speed = Random.Range(-2f,2f);
         rotated = new Vector3(0,0,speed);
     }
 
