@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacles : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] Transform obstacleHolder;
     [SerializeField] Transform[] obstacles;
     [SerializeField] ScoreCount score;
     //bool doneGenerate = true;
@@ -31,6 +32,12 @@ public class Obstacles : MonoBehaviour
         int x = score.scoreInt/12;
         if(x==multiplier){
             Debug.Log("multiplier="+x);
+            if(multiplier>=3){
+               Destroy(obstacleHolder.GetChild(0).gameObject);
+            }
+            GameObject obsH = new GameObject();
+            obsH.name = multiplier.ToString();
+            obsH.transform.parent = obstacleHolder;
             int maxC = 8 + multiplier/8;
             int minC = 5 + multiplier/10;
             int obstacleCount = Random.Range(minC,maxC);
@@ -46,6 +53,7 @@ public class Obstacles : MonoBehaviour
                 float ra = Random.Range(0,360);
                 int obstNumber = Random.Range(0,4);
                 Transform obs = Instantiate(obstacles[obstNumber],pos,Quaternion.Euler(0,0,ra));
+                obs.parent = obsH.transform;
                 obs.GetComponent<SpriteRenderer>().color = Color.black;
                 if(obs.gameObject.tag=="Circle"){
                     obs.localScale = new Vector3(xscale, xscale, 1);
