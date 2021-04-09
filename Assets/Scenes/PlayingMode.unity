@@ -421,13 +421,13 @@ MonoBehaviour:
   score: {fileID: 1698892499}
   multiplier: 1
   deadlyObstaclePercent: 10
-  movingObstaclePercent: 15
+  movingObstaclePercent: 10
   rotateObstaclePercent: 10
   moveMultiplier: 6
   deadMultiplier: 5
   rotateMultiplier: 4
-  moveAdd: 0.25
-  deadAdd: 0.35
+  moveAdd: 0.1
+  deadAdd: 0.25
   rotateAdd: 0.15
 --- !u!114 &519420036
 MonoBehaviour:

@@ -38,8 +38,10 @@ public class Obstacles : MonoBehaviour
             GameObject obsH = new GameObject();
             obsH.name = multiplier.ToString();
             obsH.transform.parent = obstacleHolder;
-            int maxC = 8 + multiplier/8;
-            int minC = 5 + multiplier/10;
+            float randRange=1f;
+            randRange = Random.Range(0f,1f);
+            int maxC = 8 + (int)(multiplier/8 * randRange);
+            int minC = 5 + (int)(multiplier/12 * randRange);
             int obstacleCount = Random.Range(minC,maxC);
             for(int i=0;i<=obstacleCount;i++){
                 float rx = Random.Range(leftB,rightB);
@@ -56,10 +58,10 @@ public class Obstacles : MonoBehaviour
                 obs.parent = obsH.transform;
                 obs.GetComponent<SpriteRenderer>().color = Color.black;
                 if(obs.gameObject.tag=="Circle"){
-                    obs.localScale = new Vector3(xscale, xscale, 1);
+                    if(xscale>yscale) obs.localScale = new Vector3(xscale, xscale, 1);
+                    else obs.localScale = new Vector3(yscale, yscale, 1);
                 } 
                 else obs.localScale = new Vector3(xscale, yscale, 1);
-                float randRange=1f;
                 if (deadlyOn && currentDeadlyCount < minimumDeadlyObstacleCount)
                 {
                     currentDeadlyCount++;
