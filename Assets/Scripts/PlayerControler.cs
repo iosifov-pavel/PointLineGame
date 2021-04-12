@@ -102,7 +102,7 @@ public class PlayerControler : MonoBehaviour
         }
         if(flying){
             float sliderValue = flySlider.value;
-            rbbody.velocity = new Vector2(sliderValue*5f,6f);
+            rbbody.velocity = new Vector2(sliderValue*5f,8f);
             flyTimer+=Time.deltaTime;
             if(flyTimer>=flyTime){
                 flying = false;

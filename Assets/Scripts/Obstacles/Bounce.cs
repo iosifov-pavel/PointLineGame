@@ -23,8 +23,9 @@ public class Bounce : MonoBehaviour
                 Rigidbody2D player = other.gameObject.GetComponent<Rigidbody2D>();
                 Vector2 direction = -contact.normal;
                 float force = (transform.localScale.x + transform.localScale.y)/2;
+                if(force<3) force = 3;
                 player.velocity *=0.55f;
-                player.AddForce(direction*force*4, ForceMode2D.Impulse);
+                player.AddForce(direction*force*3, ForceMode2D.Impulse);
             }
         }
     }
