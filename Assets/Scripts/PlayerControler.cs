@@ -102,7 +102,7 @@ public class PlayerControler : MonoBehaviour
         }
         if(flying){
             float sliderValue = flySlider.value;
-            rbbody.velocity = new Vector2(sliderValue*3f,6f);
+            rbbody.velocity = new Vector2(sliderValue*5f,6f);
             flyTimer+=Time.deltaTime;
             if(flyTimer>=flyTime){
                 flying = false;
@@ -110,6 +110,7 @@ public class PlayerControler : MonoBehaviour
                 flySlider.gameObject.SetActive(false);
                 flyTimer = 0;
                 rbbody.gravityScale = actualGravity;
+                //circleCollider.isTrigger = false;
             }
         }
     }
@@ -148,6 +149,7 @@ public class PlayerControler : MonoBehaviour
                 flySlider.gameObject.SetActive(true);
                 rbbody.velocity = Vector2.zero;
                 rbbody.gravityScale = 0;
+                //circleCollider.isTrigger = true;
             }
             else if(thisPick == pickups.lowGravity){
                 lowGravity = true;

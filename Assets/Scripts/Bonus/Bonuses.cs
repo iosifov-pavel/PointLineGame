@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bonuses : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] Transform[] bonusList;
     void Start()
     {
         
