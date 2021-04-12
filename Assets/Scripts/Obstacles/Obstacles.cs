@@ -15,11 +15,16 @@ public class Obstacles : MonoBehaviour
     [SerializeField] float deadlyObstaclePercent = 10;
     [SerializeField] float movingObstaclePercent = 10;
     [SerializeField] float rotateObstaclePercent = 10;
-    [SerializeField] int moveMultiplier = 8, deadMultiplier = 6, rotateMultiplier = 4;
-    [SerializeField] float moveAdd = 0.1f, deadAdd = 0.1f, rotateAdd = 0.1f;
+    [SerializeField] float stickyObstaclePercent = 10;
+    [SerializeField] float bounceObstaclePercent = 10;
+    [SerializeField] int moveMultiplier = 8, deadMultiplier = 6, rotateMultiplier = 4, stickyM = 4, bounceM = 4;
+    [SerializeField] float moveAdd = 0.1f, deadAdd = 0.1f, rotateAdd = 0.1f, bounceAdd = 0.1f, stickyAdd = 0.1f;
     bool deadlyOn =false;
     bool movingOn = false;
     bool rotateOn = false;
+    bool stickyOn = false;
+    bool bounceOn = false;
+    bool isBounce=false,isDeadly=false,isSticky=false;
     int minimumDeadlyObstacleCount = 1;
     int currentDeadlyCount =0;
     void Start()
@@ -39,12 +44,16 @@ public class Obstacles : MonoBehaviour
             GameObject obsH = new GameObject();
             obsH.name = multiplier.ToString();
             obsH.transform.parent = obstacleHolder;
-            float randRange=1f;
+            float randRange=0f;
+            float percent = 50;
             randRange = Random.Range(0f,1f);
             int maxC = 9 + (int)(multiplier/8 * randRange);
             int minC = 6 + (int)(multiplier/12 * randRange);
             int obstacleCount = Random.Range(minC,maxC);
             for(int i=0;i<=obstacleCount;i++){
+                isSticky = false;
+                isDeadly = false;
+                isBounce = false;
                 float rx = Random.Range(leftB,rightB);
                 float ry = Random.Range(score.scoreInt+9,score.scoreInt+21);
                 Vector3 pos = new Vector3(rx,ry,0);
@@ -56,7 +65,10 @@ public class Obstacles : MonoBehaviour
                 float ra = Random.Range(0,360);
                 int obstNumber = Random.Range(0,4);
                 Transform obs = Instantiate(obstacles[obstNumber],pos,Quaternion.Euler(0,0,ra));
-                obs.parent = obsH.transform;
+                GameObject newObj = new GameObject();
+                newObj.transform.position = obs.position;
+                obs.parent = newObj.transform;
+                newObj.transform.parent = obsH.transform;
                 obs.GetComponent<SpriteRenderer>().color = Color.black;
                 if(obs.gameObject.tag=="Circle"){
                     if(xscale>yscale) obs.localScale = new Vector3(xscale, xscale, 1);
@@ -67,28 +79,48 @@ public class Obstacles : MonoBehaviour
                 {
                     currentDeadlyCount++;
                     MakeDeadly(obs);
+                    isDeadly = true;
                 }
-                else if(deadlyOn && currentDeadlyCount >= minimumDeadlyObstacleCount){
-                    float percent = Random.Range(1,101);
-                    randRange = Random.Range(0f,1f);
-                    if(percent*randRange<=deadlyObstaclePercent){
+                if(deadlyOn && currentDeadlyCount >= minimumDeadlyObstacleCount){
+                    percent = Random.Range(1,101);
+                    //randRange = Random.Range(-100,1);
+                    if(percent+randRange<=deadlyObstaclePercent){
                         MakeDeadly(obs);
+                        isDeadly = true;
+                    }
+                }
+                if(bounceOn && !isDeadly){
+                    percent = Random.Range(1, 101);
+                    //randRange = Random.Range(-100, 1);
+                    if (percent+  randRange <= bounceObstaclePercent)
+                    {
+                        MakeBounce(obs);
+                        isBounce = true;
+                    }
+                }
+                if(stickyOn && !isBounce && !isDeadly){
+                    percent = Random.Range(0, 101);
+                    //randRange = Random.Range(-100, 1);
+                    if (percent + randRange <= stickyObstaclePercent)
+                    {
+                        MakeSticky(obs);
+                        isSticky = true;
                     }
                 }
                 if(movingOn)
                 {
-                    float percent = Random.Range(1, 101);
-                    randRange = Random.Range(0f,1f);
-                    if (percent*randRange <= movingObstaclePercent)
+                    percent = Random.Range(1, 101);
+                    //randRange = Random.Range(-100, 1);
+                    if (percent+ randRange <= movingObstaclePercent)
                     {
                         MakeMove(obs);
                     }
                 }
                 if(rotateOn)
                 {
-                    float percent = Random.Range(1, 101);
-                    randRange = Random.Range(0f,1f);
-                    if (percent*randRange <= rotateObstaclePercent)
+                    percent = Random.Range(1, 101);
+                    //randRange = Random.Range(-100, 1);
+                    if (percent+ randRange <= rotateObstaclePercent)
                     {
                         MakeRotate(obs);
                     }
@@ -98,12 +130,14 @@ public class Obstacles : MonoBehaviour
             if(multiplier>=deadMultiplier) deadlyOn = true;
             if(multiplier>=moveMultiplier) movingOn = true;
             if(multiplier>=rotateMultiplier) rotateOn = true;
+            if (multiplier >= bounceM) bounceOn = true;
+            if (multiplier >= stickyM) stickyOn = true;
             if(deadlyOn)
             {
                 if (multiplier % 22 == 0) minimumDeadlyObstacleCount++;
                 currentDeadlyCount = 0;
                 deadlyObstaclePercent += deadAdd;
-                if (deadlyObstaclePercent > 45) deadlyObstaclePercent = 45;
+                if (deadlyObstaclePercent > 30) deadlyObstaclePercent = 30;
                 Debug.Log("percent: " + deadlyObstaclePercent);
             }
             if(movingOn)
@@ -118,6 +152,18 @@ public class Obstacles : MonoBehaviour
                 if (deadlyObstaclePercent > 25) deadlyObstaclePercent = 25;
                 Debug.Log("Rotate percent: " + rotateObstaclePercent);
             }
+            if (bounceOn)
+            {
+                bounceObstaclePercent += bounceAdd;
+                if (bounceObstaclePercent > 20) bounceObstaclePercent = 20;
+                Debug.Log("Bounce percent: " + bounceObstaclePercent);
+            }
+            if (stickyOn)
+            {
+                stickyObstaclePercent += stickyAdd;
+                if (stickyObstaclePercent > 20) stickyObstaclePercent = 20;
+                Debug.Log("Sticky percent: " + stickyObstaclePercent);
+            }
         }
 
     }
@@ -131,10 +177,22 @@ public class Obstacles : MonoBehaviour
 
     void MakeMove(Transform obstacle)
     {
-        obstacle.gameObject.AddComponent<MovementObstacle>();
+        obstacle.parent.gameObject.AddComponent<MovementObstacle>();
+        //obstacle.gameObject.AddComponent<MovementObstacle>();
     }
 
     void MakeRotate(Transform obstacle){
-        obstacle.gameObject.AddComponent<Rotatable>();
+        obstacle.parent.gameObject.AddComponent<Rotatable>();
+        //obstacle.gameObject.AddComponent<Rotatable>();
+    }
+
+    void MakeBounce(Transform obstacle){
+        obstacle.GetComponent<SpriteRenderer>().color = Color.green;
+        obstacle.gameObject.AddComponent<Bounce>();
+    }
+    void MakeSticky(Transform obstacle)
+    {
+        obstacle.GetComponent<SpriteRenderer>().color = Color.blue;
+        obstacle.gameObject.AddComponent<Sticky>();
     }
 }

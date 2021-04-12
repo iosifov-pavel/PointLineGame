@@ -87,7 +87,7 @@ public class PlayerControler : MonoBehaviour
             }
         }
         if(lowGravity){
-            if(rbbody.velocity.y<=0){
+            if(rbbody.velocity.y<0){
                 rbbody.gravityScale = actualGravity/4f;
             }
             else{
@@ -110,6 +110,9 @@ public class PlayerControler : MonoBehaviour
                 flySlider.gameObject.SetActive(false);
                 flyTimer = 0;
                 rbbody.gravityScale = actualGravity;
+                Vector2 newVel = rbbody.velocity;
+                newVel.x=0;
+                rbbody.velocity = newVel;
                 //circleCollider.isTrigger = false;
             }
         }
