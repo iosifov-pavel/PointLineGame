@@ -7,6 +7,7 @@ public class Obstacles : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Transform obstacleHolder;
     [SerializeField] Transform[] obstacles;
+    [SerializeField] int basePercent=80, LGpercent = 86, Shdpercent = 96, Shtpercent = 91, Fpercent = 100;
     [SerializeField] Transform[] bonusList;
     [SerializeField] ScoreCount score;
     //bool doneGenerate = true;
@@ -44,6 +45,7 @@ public class Obstacles : MonoBehaviour
             GameObject obsH = new GameObject();
             obsH.name = multiplier.ToString();
             obsH.transform.parent = obstacleHolder;
+            GenerateBonuses(obstacleHolder);
             float randRange=0f;
             float percent = 50;
             randRange = Random.Range(0f,1f);
@@ -66,6 +68,7 @@ public class Obstacles : MonoBehaviour
                 int obstNumber = Random.Range(0,4);
                 Transform obs = Instantiate(obstacles[obstNumber],pos,Quaternion.Euler(0,0,ra));
                 GameObject newObj = new GameObject();
+                newObj.name = obs.gameObject.name;
                 newObj.transform.position = obs.position;
                 obs.parent = newObj.transform;
                 newObj.transform.parent = obsH.transform;
@@ -166,6 +169,33 @@ public class Obstacles : MonoBehaviour
             }
         }
 
+    }
+
+    void GenerateBonuses(Transform parent){
+        int percent = Random.Range(0,101);
+        float rx = Random.Range(leftB, rightB);
+        float ry = Random.Range(score.scoreInt + 9, score.scoreInt + 21);
+        Vector3 pos = new Vector3(rx, ry, 0);
+        if(percent<=basePercent) return;
+        if(percent>basePercent && percent<=LGpercent){
+            Transform newBonus = Instantiate(bonusList[0],pos,Quaternion.identity);
+            newBonus.parent = parent;
+        }
+        else if(percent>LGpercent && percent<=Shtpercent){
+            Transform newBonus = Instantiate(bonusList[2], pos, Quaternion.identity);
+            newBonus.parent = parent;
+        }
+        else if (percent > Shtpercent && percent <= Shdpercent)
+        {
+            Transform newBonus = Instantiate(bonusList[1], pos, Quaternion.identity);
+            newBonus.parent = parent;
+        }
+        else if (percent > Shdpercent && percent <= Fpercent)
+        {
+            Transform newBonus = Instantiate(bonusList[3], pos, Quaternion.identity);
+            newBonus.parent = parent;
+        }
+    
     }
 
     void MakeDeadly(Transform obstacle){
