@@ -7,6 +7,7 @@ public class Obstacles : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Transform obstacleHolder;
     [SerializeField] Transform[] obstacles;
+    [SerializeField] Transform[] bonusList;
     [SerializeField] ScoreCount score;
     //bool doneGenerate = true;
     public int multiplier = 1;
