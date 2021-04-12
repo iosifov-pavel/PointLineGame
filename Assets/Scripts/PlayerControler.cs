@@ -1,12 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControler : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Sprite dead;
+    [SerializeField] Transform shield, shoot, engine;
+    [SerializeField] Button shootButton;
+    [SerializeField] Slider flySlider;
+    [SerializeField] Transform bullet;
+    [SerializeField] float shieldTime = 10f;
+    [SerializeField] float lowGravityTime = 10f;
+    float actualGravity;
+    [SerializeField] float flyTime = 8f;
+    [SerializeField] int shoots = 0;
+    float shieldTimer = 0, gravityTimer = 0, flyTimer=0;
     bool isDead = false;
+    bool activeShield = false, flying = false, canShoot = false, lowGravity = false;
     bool switchSide = false;
     bool canSwitch = false;
     //public bool isDead = false;
@@ -16,6 +28,7 @@ public class PlayerControler : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         rbbody = GetComponent<Rigidbody2D>();
+        actualGravity = rbbody.gravityScale;
     }
 
     bool CheckColliders(Vector2 point){
@@ -64,6 +77,41 @@ public class PlayerControler : MonoBehaviour
                 StartCoroutine(SwitchDelay());
             } 
         }
+        //---------
+        if(activeShield){
+            shieldTimer+=Time.deltaTime;
+            if(shieldTimer>=shieldTime){
+                activeShield = false;
+                shield.gameObject.SetActive(false);
+                shieldTimer = 0;
+            }
+        }
+        if(lowGravity){
+            if(rbbody.velocity.y<=0){
+                rbbody.gravityScale = actualGravity/4f;
+            }
+            else{
+                rbbody.gravityScale = actualGravity;
+            }
+            gravityTimer+=Time.deltaTime;
+            if(gravityTimer>=lowGravityTime){
+                rbbody.gravityScale = actualGravity;
+                lowGravity = false;
+                gravityTimer = 0;
+            }
+        }
+        if(flying){
+            float sliderValue = flySlider.value;
+            rbbody.velocity = new Vector2(sliderValue*3f,6f);
+            flyTimer+=Time.deltaTime;
+            if(flyTimer>=flyTime){
+                flying = false;
+                engine.gameObject.SetActive(false);
+                flySlider.gameObject.SetActive(false);
+                flyTimer = 0;
+                rbbody.gravityScale = actualGravity;
+            }
+        }
     }
 
     public void MakeDead()
@@ -74,5 +122,48 @@ public class PlayerControler : MonoBehaviour
 
     public bool CheckDead(){
         return isDead;
+    }
+
+
+    public bool CheckShield(){
+        return activeShield;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Bonus"){
+            pickups thisPick = other.gameObject.GetComponent<PickUp>().GetPickUp();
+            if(thisPick == pickups.shield){
+                activeShield = true;
+                shield.gameObject.SetActive(true);
+            }
+            else if(thisPick == pickups.shoot){
+                canShoot = true;
+                shootButton.gameObject.SetActive(true);
+                shoot.gameObject.SetActive(true);
+                shoots+=4;
+            }
+            else if(thisPick == pickups.fly){
+                flying = true;
+                engine.gameObject.SetActive(true);
+                flySlider.gameObject.SetActive(true);
+                rbbody.velocity = Vector2.zero;
+                rbbody.gravityScale = 0;
+            }
+            else if(thisPick == pickups.lowGravity){
+                lowGravity = true;
+            }
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void ShootBullet(){
+        Transform newBullet = Instantiate(bullet,shoot.position, Quaternion.identity);
+        newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0,4);
+        shoots--;
+        if(shoots==0){
+            canShoot = false;
+            shoot.gameObject.SetActive(false);
+            shootButton.gameObject.SetActive(false);
+        }
     }
 }

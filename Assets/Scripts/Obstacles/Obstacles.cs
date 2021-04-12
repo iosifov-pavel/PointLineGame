@@ -125,6 +125,7 @@ public class Obstacles : MonoBehaviour
         obstacle.GetComponent<SpriteRenderer>().color = Color.red;
         obstacle.gameObject.layer = 9;
         obstacle.gameObject.AddComponent<DeathArea>();
+        obstacle.GetComponent<DeathArea>().ISObstacle();
     }
 
     void MakeMove(Transform obstacle)
