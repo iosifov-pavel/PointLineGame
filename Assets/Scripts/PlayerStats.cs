@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
     {
         totalUps = shieldUp+shootUp+flyUp+gravityUp;
         totalTouch = baseTouch+deadlyTouch+bounceTouch+stickyTouch;
-        totalShot = baseShot+deadlyShot+bounceShot+stickyShot;
+        totalShot = obstacleByBullet+obstacleByShield;
     }
 
     public void GetTouch(Transform obstacle){
