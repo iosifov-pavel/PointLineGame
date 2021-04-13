@@ -786,10 +786,10 @@ MonoBehaviour:
   - {fileID: 5902890609596302711, guid: 5b3d90238a3def9428f122d9a6a9da39, type: 3}
   - {fileID: 2226149706743246413, guid: 45b1d9d47b1f2d942a0b6b802ef2587b, type: 3}
   - {fileID: 8516725403241141426, guid: 3f8b3a61a5d0a7a429ce9f63a2be6ae2, type: 3}
-  basePercent: 76
-  LGpercent: 85
-  Shdpercent: 97
-  Shtpercent: 91
+  basePercent: 72
+  LGpercent: 82
+  Shdpercent: 96
+  Shtpercent: 89
   Fpercent: 100
   bonusList:
   - {fileID: 9073481497052795063, guid: 388afeb259b1f494baf8c4a469795daa, type: 3}
@@ -2038,8 +2038,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumps: 0
+  shieldUp: 0
+  flyUp: 0
+  shootUp: 0
+  gravityUp: 0
   score: 0
   maxJump: 0
+  obstacleByBullet: 0
+  obstacleByShield: 0
+  maxShots: 0
 --- !u!1 &1930535174
 GameObject:
   m_ObjectHideFlags: 0
