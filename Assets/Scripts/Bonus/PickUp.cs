@@ -26,7 +26,7 @@ public class PickUp : MonoBehaviour
         num  = Physics2D.OverlapCollider(circle,new ContactFilter2D(),hits);
         if(num==0) return;
         foreach(Collider2D hit in hits){
-            if(hit.gameObject.tag=="Bounce") continue;
+            if(hit.gameObject.tag=="Bounce" || hit.gameObject.tag=="Player") continue;
             if(hit.transform.parent.gameObject.GetComponent<Rotatable>()!=null
             || hit.transform.parent.gameObject.GetComponent<MovementObstacle>()!=null) return;
             ColliderDistance2D colliderDistance = hit.Distance(circle);

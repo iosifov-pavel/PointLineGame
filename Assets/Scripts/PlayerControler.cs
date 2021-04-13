@@ -89,7 +89,7 @@ public class PlayerControler : MonoBehaviour
         }
         if(lowGravity){
             if(rbbody.velocity.y<0){
-                if(!isStick)rbbody.gravityScale = actualGravity/4f;
+                if(!isStick)rbbody.gravityScale = actualGravity/5f;
                 else rbbody.gravityScale=0;
             }
             else{
