@@ -222,12 +222,12 @@ public class Obstacles : MonoBehaviour
     }
 
     void MakeBounce(Transform obstacle){
-        obstacle.GetComponent<SpriteRenderer>().color = Color.green;
+        obstacle.GetComponent<SpriteRenderer>().color = Color.blue;
         obstacle.gameObject.AddComponent<Bounce>();
     }
     void MakeSticky(Transform obstacle)
     {
-        obstacle.GetComponent<SpriteRenderer>().color = Color.blue;
+        obstacle.GetComponent<SpriteRenderer>().color = Color.green;
         obstacle.gameObject.AddComponent<Sticky>();
     }
 }
