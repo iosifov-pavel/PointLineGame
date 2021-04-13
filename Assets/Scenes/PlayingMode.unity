@@ -813,7 +813,6 @@ MonoBehaviour:
   rotateAdd: 0.15
   bounceAdd: 0.15
   stickyAdd: 0.15
-  results: []
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,9 +2018,9 @@ MonoBehaviour:
   shootButton: {fileID: 1460009733}
   flySlider: {fileID: 376494539}
   bullet: {fileID: 6055956659429085892, guid: 170047c744a13df428069ec08be1961b, type: 3}
-  shieldTime: 10
-  lowGravityTime: 8
-  flyTime: 6
+  shieldTime: 12
+  lowGravityTime: 10
+  flyTime: 8
   shoots: 0
   isStick: 0
 --- !u!1 &1930535174

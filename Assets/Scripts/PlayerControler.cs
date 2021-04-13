@@ -143,6 +143,7 @@ public class PlayerControler : MonoBehaviour
             if(thisPick == pickups.shield){
                 activeShield = true;
                 shield.gameObject.SetActive(true);
+                shieldTimer=0;
             }
             else if(thisPick == pickups.shoot){
                 canShoot = true;
@@ -156,11 +157,13 @@ public class PlayerControler : MonoBehaviour
                 flySlider.gameObject.SetActive(true);
                 rbbody.velocity = Vector2.zero;
                 rbbody.gravityScale = 0;
+                flyTimer=0;
                 //circleCollider.isTrigger = true;
             }
             else if(thisPick == pickups.lowGravity){
                 lowGravity = true;
                 lowGravityTransform.gameObject.SetActive(true);
+                gravityTimer = 0;
             }
             Destroy(other.gameObject);
         }
