@@ -27,6 +27,8 @@ public class PickUp : MonoBehaviour
         if(num==0) return;
         foreach(Collider2D hit in hits){
             if(hit.gameObject.tag=="Bounce") continue;
+            if(hit.transform.parent.gameObject.GetComponent<Rotatable>()!=null
+            || hit.transform.parent.gameObject.GetComponent<MovementObstacle>()!=null) return;
             ColliderDistance2D colliderDistance = hit.Distance(circle);
                     if (colliderDistance.isOverlapped){
 	                	transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
