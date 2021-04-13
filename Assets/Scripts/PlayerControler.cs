@@ -7,7 +7,7 @@ public class PlayerControler : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Sprite dead;
-    [SerializeField] Transform shield, shoot, engine;
+    [SerializeField] Transform shield, shoot, engine, lowGravityTransform;
     [SerializeField] Button shootButton;
     [SerializeField] Slider flySlider;
     [SerializeField] Transform bullet;
@@ -21,6 +21,7 @@ public class PlayerControler : MonoBehaviour
     bool activeShield = false, flying = false, canShoot = false, lowGravity = false;
     bool switchSide = false;
     bool canSwitch = false;
+    public bool isStick = false;
     //public bool isDead = false;
     CircleCollider2D circleCollider;
     Rigidbody2D rbbody;
@@ -88,16 +89,19 @@ public class PlayerControler : MonoBehaviour
         }
         if(lowGravity){
             if(rbbody.velocity.y<0){
-                rbbody.gravityScale = actualGravity/4f;
+                if(!isStick)rbbody.gravityScale = actualGravity/4f;
+                else rbbody.gravityScale=0;
             }
             else{
-                rbbody.gravityScale = actualGravity;
+                if(!isStick)rbbody.gravityScale = actualGravity;
+                else rbbody.gravityScale=0;
             }
             gravityTimer+=Time.deltaTime;
             if(gravityTimer>=lowGravityTime){
                 rbbody.gravityScale = actualGravity;
                 lowGravity = false;
                 gravityTimer = 0;
+                lowGravityTransform.gameObject.SetActive(false);
             }
         }
         if(flying){
@@ -156,6 +160,7 @@ public class PlayerControler : MonoBehaviour
             }
             else if(thisPick == pickups.lowGravity){
                 lowGravity = true;
+                lowGravityTransform.gameObject.SetActive(true);
             }
             Destroy(other.gameObject);
         }
@@ -163,7 +168,7 @@ public class PlayerControler : MonoBehaviour
 
     public void ShootBullet(){
         Transform newBullet = Instantiate(bullet,shoot.position, Quaternion.identity);
-        newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0,4);
+        newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0,9f);
         shoots--;
         if(shoots==0){
             canShoot = false;

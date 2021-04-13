@@ -6,7 +6,7 @@ public class BounceSphere : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] float bounceRadiusPower = 1f;
-    [SerializeField] float bounceConstPower = 1.85f;
+    [SerializeField] float bounceConstPower = 4f;
     CircleCollider2D circleCollider;
     public bool destroyable = false;
     Rigidbody2D playerBody;
