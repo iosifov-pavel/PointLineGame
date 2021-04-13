@@ -9,6 +9,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] Sprite dead;
     [SerializeField] Transform shield, shoot, engine, lowGravityTransform;
     [SerializeField] Button shootButton;
+    [SerializeField] Text shootCount;
     [SerializeField] Slider flySlider;
     [SerializeField] Transform bullet;
     [SerializeField] float shieldTime = 10f;
@@ -120,6 +121,7 @@ public class PlayerControler : MonoBehaviour
                 //circleCollider.isTrigger = false;
             }
         }
+        shootCount.text = shoots.ToString();
     }
 
     public void MakeDead()
