@@ -28,8 +28,6 @@ public class Obstacles : MonoBehaviour
     bool isBounce=false,isDeadly=false,isSticky=false;
     int minimumDeadlyObstacleCount = 1;
     int currentDeadlyCount =0;
-    public List<Collider2D> results = new List<Collider2D>();
-    bool touch=false;
     void Start()
     {
         

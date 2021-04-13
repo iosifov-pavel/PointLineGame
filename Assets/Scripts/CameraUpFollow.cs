@@ -11,6 +11,7 @@ public class CameraUpFollow : MonoBehaviour
     float maxTargetY;
     void Start()
     {
+        //Screen.SetResolution(1080,1920,true);
         maxTargetY = (target.position.y);
         if(!followX){
             //deathX.gameObject.SetActive(true);
