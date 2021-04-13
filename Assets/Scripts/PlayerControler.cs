@@ -62,6 +62,7 @@ public class PlayerControler : MonoBehaviour
             Vector2 point = new Vector3(-3.3f,transform.position.y,transform.position.z);
             if(CheckColliders(point)){
                 ReverseSpeed();
+                StartCoroutine(SwitchDelay());
                 return;
             } 
             else{
@@ -69,10 +70,11 @@ public class PlayerControler : MonoBehaviour
                 StartCoroutine(SwitchDelay());
             } 
         }
-        else if(transform.position.x <= -3.3f && !switchSide){
-            Vector2 point = new Vector3(3.3f,transform.position.y,transform.position.z);
+        else if(transform.position.x <= -3.2f && !switchSide){
+            Vector2 point = new Vector3(3.2f,transform.position.y,transform.position.z);
             if(CheckColliders(point)){
                 ReverseSpeed();
+                StartCoroutine(SwitchDelay());
                 return;
             }
             else{
