@@ -181,6 +181,7 @@ public class PlayerControler : MonoBehaviour
                 PlayerStats.stats.gravityUp++;
             }
             Destroy(other.gameObject);
+            transform.rotation = Quaternion.identity;
         }
     }
 

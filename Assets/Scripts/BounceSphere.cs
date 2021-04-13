@@ -43,6 +43,7 @@ public class BounceSphere : MonoBehaviour
         if(appliedOnce) return;
         if(other.gameObject.tag=="Player"){
             if(other.gameObject.GetComponent<PlayerControler>().CheckDead()) return;
+            other.transform.rotation = Quaternion.identity;
             playerBody = other.gameObject.GetComponent<Rigidbody2D>();
             Vector2 forceDirection = other.transform.position - transform.position;
             forceDirection.Normalize();
