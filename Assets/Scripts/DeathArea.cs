@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DeathArea : MonoBehaviour
 {
     // Start is called before the first frame update
+    //[SerializeField] GameObject defeatPanel;
     bool isObstacle = false;
     void Start()
     {
@@ -36,7 +37,7 @@ public class DeathArea : MonoBehaviour
 
     IEnumerator MainMenu(){
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(0);
+        //defeatPanel.SetActive(true);
     }
 
     void MakeContact(GameObject player){
@@ -46,6 +47,6 @@ public class DeathArea : MonoBehaviour
             }
             Debug.Log("game over");
             player.GetComponent<PlayerControler>().MakeDead();
-            StartCoroutine(MainMenu());
+            //StartCoroutine(MainMenu());
     }
 }

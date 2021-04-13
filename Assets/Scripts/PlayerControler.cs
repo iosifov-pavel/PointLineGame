@@ -17,8 +17,9 @@ public class PlayerControler : MonoBehaviour
     float actualGravity;
     [SerializeField] float flyTime = 8f;
     [SerializeField] int shoots = 0;
+    [SerializeField] GameObject defeatPanel;
     float shieldTimer = 0, gravityTimer = 0, flyTimer=0;
-    bool isDead = false;
+    bool isDead = false, readyPanel = false;
     bool activeShield = false, flying = false, canShoot = false, lowGravity = false;
     bool switchSide = false;
     bool canSwitch = false;
@@ -129,6 +130,12 @@ public class PlayerControler : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = dead;
         isDead = true;
+        StartCoroutine(Wait());
+
+    }
+    IEnumerator Wait(){
+        yield return new WaitForSeconds(1.5f);
+        defeatPanel.SetActive(true);
     }
 
     public bool CheckDead(){

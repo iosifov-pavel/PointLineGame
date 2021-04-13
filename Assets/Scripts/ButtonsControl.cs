@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonsControl : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] Transform pausePanel;
     void Start()
     {
         
@@ -23,5 +25,19 @@ public class ButtonsControl : MonoBehaviour
 
     public void StartPlaying(){
         SceneManager.LoadScene(1);
+    }
+
+    public void PauseMenu(){
+        Time.timeScale = 0;
+        pausePanel.gameObject.SetActive(true);
+    }
+
+    public void ContinueGame(){
+        Time.timeScale = 1;
+        pausePanel.gameObject.SetActive(false);
+    }
+
+    public void MainMenu(){
+        SceneManager.LoadScene(0);
     }
 }

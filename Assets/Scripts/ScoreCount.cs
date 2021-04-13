@@ -7,6 +7,8 @@ public class ScoreCount : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Text score;
+    [SerializeField] Text pauseScore;
+    [SerializeField] Text defeatScore;
     public int scoreInt=0;
     int startPosition;
     int currentPosition;
@@ -26,6 +28,8 @@ public class ScoreCount : MonoBehaviour
             scoreInt = (currentPosition);
             startPosition = currentPosition;
             score.text = scoreInt.ToString();
+            pauseScore.text = scoreInt.ToString();
+            defeatScore.text = scoreInt.ToString();
             PlayerStats.stats.score=scoreInt;
         }
     }
