@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5902890609596302711}
   - component: {fileID: 3765093914002633517}
   - component: {fileID: 5309457311272556203}
+  - component: {fileID: -413998128681185770}
   m_Layer: 8
   m_Name: Romb
   m_TagString: Untagged
@@ -112,3 +113,15 @@ PolygonCollider2D:
       - {x: -0.37783295, y: -0.0037407316}
       - {x: -0.001054287, y: -0.3841152}
       - {x: 0.3803975, y: 0.00039917976}
+--- !u!114 &-413998128681185770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6559908029461371380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb534f8906027348acc577c6859e3b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

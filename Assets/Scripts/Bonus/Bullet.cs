@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             if(isShield) PlayerStats.stats.obstacleByShield++;
             else PlayerStats.stats.obstacleByBullet++;
+            PlayerStats.stats.GetShot(transform);
             if(!isShield)Destroy(gameObject);
         }
     }
