@@ -7,7 +7,7 @@ public class Obstacles : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Transform obstacleHolder;
     [SerializeField] Transform[] obstacles;
-    [SerializeField] int basePercent=80, LGpercent = 86, Shdpercent = 96, Shtpercent = 91, Fpercent = 100;
+    [SerializeField] int basePercent=80, LGpercent = 88, Shdpercent = 98, Shtpercent = 93, Fpercent = 100;
     [SerializeField] Transform[] bonusList;
     [SerializeField] ScoreCount score;
     //bool doneGenerate = true;
@@ -28,6 +28,8 @@ public class Obstacles : MonoBehaviour
     bool isBounce=false,isDeadly=false,isSticky=false;
     int minimumDeadlyObstacleCount = 1;
     int currentDeadlyCount =0;
+    public List<Collider2D> results = new List<Collider2D>();
+    bool touch=false;
     void Start()
     {
         
@@ -45,7 +47,7 @@ public class Obstacles : MonoBehaviour
             GameObject obsH = new GameObject();
             obsH.name = multiplier.ToString();
             obsH.transform.parent = obstacleHolder;
-            GenerateBonuses(obstacleHolder);
+            GenerateBonuses(obsH.transform);
             float randRange=0f;
             float percent = 50;
             randRange = Random.Range(0f,1f);
@@ -180,22 +182,30 @@ public class Obstacles : MonoBehaviour
         if(percent>basePercent && percent<=LGpercent){
             Transform newBonus = Instantiate(bonusList[0],pos,Quaternion.identity);
             newBonus.parent = parent;
+            OverlapBonus(newBonus);
         }
         else if(percent>LGpercent && percent<=Shtpercent){
             Transform newBonus = Instantiate(bonusList[2], pos, Quaternion.identity);
             newBonus.parent = parent;
+            OverlapBonus(newBonus);
         }
         else if (percent > Shtpercent && percent <= Shdpercent)
         {
             Transform newBonus = Instantiate(bonusList[1], pos, Quaternion.identity);
             newBonus.parent = parent;
+            OverlapBonus(newBonus);
         }
         else if (percent > Shdpercent && percent <= Fpercent)
         {
             Transform newBonus = Instantiate(bonusList[3], pos, Quaternion.identity);
             newBonus.parent = parent;
+            OverlapBonus(newBonus);
         }
     
+    }
+
+    void OverlapBonus(Transform bonus){
+        //----
     }
 
     void MakeDeadly(Transform obstacle){

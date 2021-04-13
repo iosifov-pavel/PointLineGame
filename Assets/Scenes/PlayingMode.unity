@@ -581,10 +581,10 @@ MonoBehaviour:
   - {fileID: 5902890609596302711, guid: 5b3d90238a3def9428f122d9a6a9da39, type: 3}
   - {fileID: 2226149706743246413, guid: 45b1d9d47b1f2d942a0b6b802ef2587b, type: 3}
   - {fileID: 8516725403241141426, guid: 3f8b3a61a5d0a7a429ce9f63a2be6ae2, type: 3}
-  basePercent: 80
-  LGpercent: 86
-  Shdpercent: 96
-  Shtpercent: 91
+  basePercent: 10
+  LGpercent: 88
+  Shdpercent: 98
+  Shtpercent: 93
   Fpercent: 100
   bonusList:
   - {fileID: 9073481497052795063, guid: 388afeb259b1f494baf8c4a469795daa, type: 3}

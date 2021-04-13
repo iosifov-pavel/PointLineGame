@@ -5,17 +5,33 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     // Start is called before the first frame update
+    CircleCollider2D circle;
     [SerializeField] pickups pick;
+    public bool isOverlaping = false;
+    public List<Collider2D> hits = new List<Collider2D>();
+    public int num=0;
 
     void Start()
     {
-        
+        circle = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        OverlapSomething();
+    }
+
+    public void OverlapSomething(){
+        num  = Physics2D.OverlapCollider(circle,new ContactFilter2D(),hits);
+        if(num==0) return;
+        foreach(Collider2D hit in hits){
+            if(hit.gameObject.tag=="Bounce") continue;
+            ColliderDistance2D colliderDistance = hit.Distance(circle);
+                    if (colliderDistance.isOverlapped){
+	                	transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+	                }
+        }
     }
 
     public pickups GetPickUp(){
