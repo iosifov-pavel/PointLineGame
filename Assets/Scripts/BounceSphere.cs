@@ -23,6 +23,7 @@ public class BounceSphere : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        //if(appliedOnce) return;
         //if(other.gameObject.tag=="Player"){
         //    if(other.gameObject.GetComponent<PlayerControler>().CheckDead()) return;
         //    playerBody = other.gameObject.GetComponent<Rigidbody2D>();
@@ -30,9 +31,11 @@ public class BounceSphere : MonoBehaviour
         //    forceDirection.Normalize();
         //    //playerBody.velocity = Vector2.zero;
         //    playerBody.velocity *= 0.55f;
-        //    playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*1.75f),ForceMode2D.Impulse);
+        //    playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*1.85f),ForceMode2D.Impulse);
         //    playerBody.velocity = Vector2.ClampMagnitude(playerBody.velocity,7.5f*bounceRadiusPower);
+        //    PlayerStats.stats.jumps++;
         //    if(destroyable) Destroy(gameObject);
+        //    appliedOnce = true;
         //}
     }
 
@@ -45,9 +48,10 @@ public class BounceSphere : MonoBehaviour
             forceDirection.Normalize();
             //playerBody.velocity = Vector2.zero;
             playerBody.velocity *= 0.55f;
-            playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*1.85f),ForceMode2D.Impulse);
+            playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*3f),ForceMode2D.Impulse);
             playerBody.velocity = Vector2.ClampMagnitude(playerBody.velocity,7.5f*bounceRadiusPower);
             if(destroyable) Destroy(gameObject);
+            PlayerStats.stats.CalculateJump();
             appliedOnce = true;
         }
     }

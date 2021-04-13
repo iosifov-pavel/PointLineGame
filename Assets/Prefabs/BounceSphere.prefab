@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1212124121352615966}
   - component: {fileID: 1212124121352615967}
   - component: {fileID: 1212124121352615964}
-  - component: {fileID: 1212124121352615960}
   m_Layer: 0
   m_Name: BounceSphere
   m_TagString: Bounce
@@ -47,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceRadiusPower: 1
-  bounceConstPower: 4
+  bounceConstPower: 5
   destroyable: 0
 --- !u!212 &1212124121352615967
 SpriteRenderer:
@@ -116,18 +115,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.36
---- !u!114 &1212124121352615960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212124121352615965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f0198cfaefa7a4ebd86942b4def555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceRadiusPower: 1
-  bounceConstPower: 4
-  destroyable: 0

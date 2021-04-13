@@ -26,6 +26,7 @@ public class ScoreCount : MonoBehaviour
             scoreInt = (currentPosition);
             startPosition = currentPosition;
             score.text = scoreInt.ToString();
+            PlayerStats.stats.score=scoreInt;
         }
     }
 }
