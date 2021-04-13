@@ -2015,6 +2015,7 @@ MonoBehaviour:
   shield: {fileID: 1601334604061071919}
   shoot: {fileID: 561024438}
   engine: {fileID: 738073126}
+  lowGravityTransform: {fileID: 215131864}
   shootButton: {fileID: 1460009733}
   flySlider: {fileID: 376494539}
   bullet: {fileID: 6055956659429085892, guid: 170047c744a13df428069ec08be1961b, type: 3}
