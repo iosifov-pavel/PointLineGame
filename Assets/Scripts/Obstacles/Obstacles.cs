@@ -122,10 +122,12 @@ public class Obstacles : MonoBehaviour
                 if(rotateOn)
                 {
                     percent = Random.Range(1, 101);
+                    int pointOrNot = Random.Range(0,101);
+                    bool withPoint = pointOrNot>=50;
                     //randRange = Random.Range(-100, 1);
                     if (percent+ randRange <= rotateObstaclePercent)
                     {
-                        MakeRotate(obs);
+                        MakeRotate(obs, withPoint);
                     }
                 }
             }
@@ -180,31 +182,24 @@ public class Obstacles : MonoBehaviour
         if(percent>basePercent && percent<=LGpercent){
             Transform newBonus = Instantiate(bonusList[0],pos,Quaternion.identity);
             newBonus.parent = parent;
-            OverlapBonus(newBonus);
         }
         else if(percent>LGpercent && percent<=Shtpercent){
             Transform newBonus = Instantiate(bonusList[2], pos, Quaternion.identity);
             newBonus.parent = parent;
-            OverlapBonus(newBonus);
         }
         else if (percent > Shtpercent && percent <= Shdpercent)
         {
             Transform newBonus = Instantiate(bonusList[1], pos, Quaternion.identity);
             newBonus.parent = parent;
-            OverlapBonus(newBonus);
         }
         else if (percent > Shdpercent && percent <= Fpercent)
         {
             Transform newBonus = Instantiate(bonusList[3], pos, Quaternion.identity);
             newBonus.parent = parent;
-            OverlapBonus(newBonus);
         }
     
     }
 
-    void OverlapBonus(Transform bonus){
-        //----
-    }
 
     void MakeDeadly(Transform obstacle){
         obstacle.GetComponent<SpriteRenderer>().color = Color.red;
@@ -219,8 +214,10 @@ public class Obstacles : MonoBehaviour
         //obstacle.gameObject.AddComponent<MovementObstacle>();
     }
 
-    void MakeRotate(Transform obstacle){
-        obstacle.parent.gameObject.AddComponent<Rotatable>();
+    void MakeRotate(Transform obstacle, bool withPoint){
+        if(withPoint) obstacle.parent.gameObject.AddComponent<RotatePoint>();
+        else obstacle.parent.gameObject.AddComponent<Rotatable>();
+        
         //obstacle.gameObject.AddComponent<Rotatable>();
     }
 

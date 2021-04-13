@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
         || other.gameObject.tag=="Bounce") return;
         else{
             Destroy(other.gameObject);
+            if(isShield) PlayerStats.stats.obstacleByShield++;
+            else PlayerStats.stats.obstacleByBullet++;
             if(!isShield)Destroy(gameObject);
         }
     }

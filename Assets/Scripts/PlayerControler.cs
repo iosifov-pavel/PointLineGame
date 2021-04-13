@@ -146,12 +146,15 @@ public class PlayerControler : MonoBehaviour
                 activeShield = true;
                 shield.gameObject.SetActive(true);
                 shieldTimer=0;
+                PlayerStats.stats.shieldUp++;
             }
             else if(thisPick == pickups.shoot){
                 canShoot = true;
                 shootButton.gameObject.SetActive(true);
                 shoot.gameObject.SetActive(true);
                 shoots+=4;
+                PlayerStats.stats.AccumulateShots(shoots);
+                PlayerStats.stats.shootUp++;
             }
             else if(thisPick == pickups.fly){
                 flying = true;
@@ -160,12 +163,14 @@ public class PlayerControler : MonoBehaviour
                 rbbody.velocity = Vector2.zero;
                 rbbody.gravityScale = 0;
                 flyTimer=0;
+                PlayerStats.stats.flyUp++;
                 //circleCollider.isTrigger = true;
             }
             else if(thisPick == pickups.lowGravity){
                 lowGravity = true;
                 lowGravityTransform.gameObject.SetActive(true);
                 gravityTimer = 0;
+                PlayerStats.stats.gravityUp++;
             }
             Destroy(other.gameObject);
         }
