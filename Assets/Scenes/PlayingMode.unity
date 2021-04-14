@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 180383704}
   m_Layer: 5
   m_Name: Pause text
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 240083290}
   m_Layer: 5
   m_Name: Pause text
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 376494539}
   m_Layer: 5
   m_Name: FlySlider
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ RectTransform:
   - {fileID: 1379429565}
   - {fileID: 547876195}
   m_Father: {fileID: 853540446}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -942,8 +942,12 @@ MonoBehaviour:
   maxSpheresCount: 6
   destroyable: 0
   startText: {fileID: 1514196466}
+  pauseText: {fileID: 722679457}
   player: {fileID: 1698892500}
   maxScale: 12
+  pause: 0
+  m_Raycaster: {fileID: 853540443}
+  m_EventSystem: {fileID: 1536460225}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1061,6 +1065,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 732222423}
+  pauseText: {fileID: 722679457}
+  pauseControl: {fileID: 519420030}
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,7 +1291,7 @@ GameObject:
   - component: {fileID: 594719473}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1351,6 +1357,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594719471}
   m_CullTransparentMesh: 0
+--- !u!1 &722679455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722679456}
+  - component: {fileID: 722679458}
+  - component: {fileID: 722679457}
+  m_Layer: 5
+  m_Name: Pause TExt
+  m_TagString: NotUI
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &722679456
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722679455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 853540446}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 720, y: 224}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &722679457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722679455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 42
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 80
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Tap to Continue
+--- !u!222 &722679458
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722679455}
+  m_CullTransparentMesh: 0
 --- !u!1 &732222422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1448,7 @@ GameObject:
   - component: {fileID: 732222424}
   m_Layer: 5
   m_Name: Pause
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1386,7 +1470,7 @@ RectTransform:
   - {fileID: 1696353461}
   - {fileID: 594719472}
   m_Father: {fileID: 853540446}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1555,7 +1639,7 @@ GameObject:
   - component: {fileID: 853540443}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1632,6 +1716,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1514196465}
+  - {fileID: 722679456}
   - {fileID: 1183750785}
   - {fileID: 1536460226}
   - {fileID: 1460009732}
@@ -1661,7 +1746,7 @@ GameObject:
   - component: {fileID: 876497383}
   m_Layer: 5
   m_Name: MainMenu
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2096,7 +2181,7 @@ GameObject:
   - component: {fileID: 1170495693}
   m_Layer: 5
   m_Name: Restart
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2226,7 +2311,7 @@ GameObject:
   - component: {fileID: 1183750786}
   m_Layer: 5
   m_Name: Score Text
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2244,7 +2329,7 @@ RectTransform:
   m_Children:
   - {fileID: 777973917}
   m_Father: {fileID: 853540446}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2306,7 +2391,7 @@ GameObject:
   - component: {fileID: 1286233057}
   m_Layer: 5
   m_Name: Continue
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2629,7 +2714,7 @@ GameObject:
   - component: {fileID: 1460009733}
   m_Layer: 5
   m_Name: ShootButton
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2647,7 +2732,7 @@ RectTransform:
   m_Children:
   - {fileID: 2042136466}
   m_Father: {fileID: 853540446}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2836,7 +2921,7 @@ GameObject:
   - component: {fileID: 1514196466}
   m_Layer: 5
   m_Name: Start text
-  m_TagString: Untagged
+  m_TagString: NotUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3074,7 +3159,7 @@ GameObject:
   - component: {fileID: 1536460224}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3125,7 +3210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 853540446}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544477904
 GameObject:
@@ -3140,7 +3225,7 @@ GameObject:
   - component: {fileID: 1544477906}
   m_Layer: 5
   m_Name: Defeat
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3162,7 +3247,7 @@ RectTransform:
   - {fileID: 1757829789}
   - {fileID: 2025017621}
   m_Father: {fileID: 853540446}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3220,7 +3305,7 @@ GameObject:
   - component: {fileID: 1578272199}
   m_Layer: 5
   m_Name: Restart
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3351,7 +3436,7 @@ GameObject:
   - component: {fileID: 1696353462}
   m_Layer: 5
   m_Name: MainMenu
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3672,6 +3757,7 @@ MonoBehaviour:
   deadlyShot: 0
   stickyShot: 0
   totalShot: 0
+  isFlying: 0
 --- !u!1 &1752739981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3772,7 @@ GameObject:
   - component: {fileID: 1752739983}
   m_Layer: 5
   m_Name: PauseButton
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3704,7 +3790,7 @@ RectTransform:
   m_Children:
   - {fileID: 2142904300}
   m_Father: {fileID: 853540446}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -3815,7 +3901,7 @@ GameObject:
   - component: {fileID: 1757829790}
   m_Layer: 5
   m_Name: Score
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4047,7 +4133,7 @@ GameObject:
   - component: {fileID: 2025017622}
   m_Layer: 5
   m_Name: BestScore
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

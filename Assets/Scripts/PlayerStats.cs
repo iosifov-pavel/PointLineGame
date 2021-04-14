@@ -18,6 +18,8 @@ public class PlayerStats : MonoBehaviour
     public int nonUniqueTouches=0;
     public int baseTouch=0, bounceTouch=0, deadlyTouch=0, stickyTouch=0, totalTouch=0;
     public int baseShot=0, bounceShot=0, deadlyShot=0, stickyShot=0, totalShot=0;
+    public bool isFlying = false;
+    bool blockedCount = false;
 
     private void Awake() {
         stats = this;    
@@ -28,6 +30,17 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void CalculateJump(){
+        if(isFlying && !blockedCount){
+            blockedCount = true;
+            return;
+        } 
+        if(isFlying && blockedCount) return;
+        if(!isFlying && blockedCount){
+            blockedCount = false;
+            jumps++;
+            previousScore = score;
+            return;
+        }
         jumps++;
         int mJ = score - previousScore;
         if(mJ >= maxJump) maxJump = mJ;    

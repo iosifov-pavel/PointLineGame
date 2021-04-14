@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CreateSphere : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class CreateSphere : MonoBehaviour
     [SerializeField] int maxSpheresCount = 4;
     [SerializeField] bool destroyable = false;
     [SerializeField] Text startText;
+    [SerializeField] Text pauseText;
     [SerializeField] PlayerControler player;
     [SerializeField] float maxScale = 12f;
     int spheresCount = 0;
     bool startGame = false;
     GameObject activeSphere = null;
+    public bool pause = false;
     Queue<GameObject> spheres = new Queue<GameObject>();
+
+    [SerializeField] GraphicRaycaster m_Raycaster;
+    PointerEventData m_PointerEventData;
+    [SerializeField] EventSystem m_EventSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,16 +36,25 @@ public class CreateSphere : MonoBehaviour
     void Update()
     {
         if(player.CheckDead()) return;
-        if(Input.GetMouseButton(0) && !startGame){
+        if(Input.GetMouseButton(0) && (!startGame || pause)){
+            CheckUI();
+            if(touchOnScreen) return;
             startGame = true;
+            pause = false;
             startText.gameObject.SetActive(false);
+            pauseText.gameObject.SetActive(false);
             Time.timeScale = 1f;
             touchOnScreen = true;
         }
+        if(!startGame || pause) return;
         if(Input.GetMouseButton(0) && !touchOnScreen){
+            CheckUI();
+            if(touchOnScreen) return;
             touchOnScreen = true;
             Vector2 pos = Input.mousePosition;
             pointPosition = cam.ScreenToWorldPoint(pos);
+            Vector3 raypos = pos;
+            Vector3 raypos2 = pointPosition;
             activeSphere = CreateSphereOnScreen(pointPosition);
             if(!destroyable){
                 spheres.Enqueue(activeSphere);
@@ -62,6 +78,21 @@ public class CreateSphere : MonoBehaviour
             touchOnScreen = false;
             activeSphere = null;
         }
+    }
+
+    void CheckUI(){
+        m_PointerEventData = new PointerEventData(m_EventSystem);
+        m_PointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        m_Raycaster.Raycast(m_PointerEventData, results);
+        foreach (RaycastResult result in results)
+        {
+            Debug.Log("Hit " + result.gameObject.name);
+            Debug.Log(result.gameObject.tag);
+        }
+        if(results.Count==1 && results[0].gameObject.tag=="NotUI") touchOnScreen = false;
+        else if(results.Count==0) touchOnScreen = false;
+        else touchOnScreen = true;
     }
 
     GameObject CreateSphereOnScreen(Vector2 spherePosition){

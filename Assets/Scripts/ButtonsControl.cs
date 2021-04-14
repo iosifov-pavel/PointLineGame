@@ -8,6 +8,8 @@ public class ButtonsControl : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] Transform pausePanel;
+    [SerializeField] Text pauseText;
+    [SerializeField] CreateSphere pauseControl;
     void Start()
     {
         
@@ -29,11 +31,12 @@ public class ButtonsControl : MonoBehaviour
 
     public void PauseMenu(){
         Time.timeScale = 0;
+        pauseControl.pause = true;
         pausePanel.gameObject.SetActive(true);
+        pauseText.gameObject.SetActive(true);
     }
 
     public void ContinueGame(){
-        Time.timeScale = 1;
         pausePanel.gameObject.SetActive(false);
     }
 

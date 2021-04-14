@@ -8,6 +8,8 @@ TagManager:
   - Bounce
   - Bonus
   - Bullet
+  - UI
+  - NotUI
   layers:
   - Default
   - TransparentFX

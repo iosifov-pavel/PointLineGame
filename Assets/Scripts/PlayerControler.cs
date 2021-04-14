@@ -43,10 +43,12 @@ public class PlayerControler : MonoBehaviour
         else return false;
     }
 
-    void ReverseSpeed(){
+    void ReverseSpeed(Vector2 point){
+        point.x*=-1;
         Vector2 newSpeed = rbbody.velocity;
         newSpeed.x*=-1;
         rbbody.velocity = newSpeed;
+        transform.position = point;
     }
 
     IEnumerator SwitchDelay(){
@@ -58,11 +60,11 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x>=3.3f && !switchSide){
+        if(transform.position.x>3.3f && !switchSide){
             Vector2 point = new Vector3(-3.3f,transform.position.y,transform.position.z);
             if(CheckColliders(point)){
-                ReverseSpeed();
-                StartCoroutine(SwitchDelay());
+                ReverseSpeed(point);
+                //StartCoroutine(SwitchDelay());
                 return;
             } 
             else{
@@ -70,11 +72,11 @@ public class PlayerControler : MonoBehaviour
                 StartCoroutine(SwitchDelay());
             } 
         }
-        else if(transform.position.x <= -3.3f && !switchSide){
+        else if(transform.position.x < -3.3f && !switchSide){
             Vector2 point = new Vector3(3.3f,transform.position.y,transform.position.z);
             if(CheckColliders(point)){
-                ReverseSpeed();
-                StartCoroutine(SwitchDelay());
+                ReverseSpeed(point);
+                //StartCoroutine(SwitchDelay());
                 return;
             }
             else{
@@ -166,6 +168,7 @@ public class PlayerControler : MonoBehaviour
                 PlayerStats.stats.shootUp++;
             }
             else if(thisPick == pickups.fly){
+                PlayerStats.stats.isFlying = true;
                 flying = true;
                 engine.gameObject.SetActive(true);
                 flySlider.gameObject.SetActive(true);
