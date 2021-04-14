@@ -944,7 +944,7 @@ MonoBehaviour:
   startText: {fileID: 1514196466}
   pauseText: {fileID: 722679457}
   player: {fileID: 1698892500}
-  maxScale: 12
+  maxScale: 10
   pause: 0
   m_Raycaster: {fileID: 853540443}
   m_EventSystem: {fileID: 1536460225}
@@ -4463,7 +4463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceRadiusPower: 1
-  bounceConstPower: 4
+  bounceConstPower: 3.6
   destroyable: 0
 --- !u!1 &3200899113231885250
 GameObject:

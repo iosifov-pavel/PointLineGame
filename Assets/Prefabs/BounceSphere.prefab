@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceRadiusPower: 1
-  bounceConstPower: 5
+  bounceConstPower: 6
   destroyable: 0
 --- !u!212 &1212124121352615967
 SpriteRenderer:
