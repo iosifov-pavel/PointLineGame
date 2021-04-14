@@ -47,13 +47,12 @@ public class BounceSphere : MonoBehaviour
             playerBody = other.gameObject.GetComponent<Rigidbody2D>();
             Vector2 forceDirection = other.transform.position - transform.position;
             forceDirection.Normalize();
-            //playerBody.velocity = Vector2.zero;
             playerBody.velocity *= 0.55f;
             playerBody.AddForce(forceDirection*(bounceConstPower+bounceRadiusPower*3.4f),ForceMode2D.Impulse);
             playerBody.velocity = Vector2.ClampMagnitude(playerBody.velocity,7.5f*bounceRadiusPower);
-            if(destroyable) Destroy(gameObject);
             PlayerStats.stats.CalculateJump();
             appliedOnce = true;
+            if(destroyable) Destroy(gameObject);
         }
     }
 

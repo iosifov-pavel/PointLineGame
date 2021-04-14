@@ -9,11 +9,13 @@ public class ScoreCount : MonoBehaviour
     [SerializeField] Text score;
     [SerializeField] Text pauseScore;
     [SerializeField] Text defeatScore;
+    [SerializeField] Text bestScore;
     public int scoreInt=0;
     int startPosition;
     int currentPosition;
     void Start()
     {
+        bestScore.text = SaveLoadManager.game.gameData.bestScore.ToString();
         score.text = scoreInt.ToString();
         startPosition = (int)transform.position.y;
         if(startPosition<0) startPosition = 0;
@@ -31,6 +33,9 @@ public class ScoreCount : MonoBehaviour
             pauseScore.text = scoreInt.ToString();
             defeatScore.text = scoreInt.ToString();
             PlayerStats.stats.score=scoreInt;
+        }
+        if(scoreInt>SaveLoadManager.game.gameData.bestScore){
+            bestScore.text = scoreInt.ToString();
         }
     }
 }

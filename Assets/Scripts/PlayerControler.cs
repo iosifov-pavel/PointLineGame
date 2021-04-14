@@ -133,6 +133,9 @@ public class PlayerControler : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = dead;
         isDead = true;
+        PlayerStats.stats.CheckBestScore();
+        SaveLoadManager.game.gameData.death++;
+        SaveLoadManager.game.SaveToFile();
         StartCoroutine(Wait());
 
     }

@@ -83,4 +83,10 @@ public class PlayerStats : MonoBehaviour
         else if(obstacle.gameObject.GetComponent<Bounce>()!=null) bounceShield++;
         else baseShield++;
     }
+
+    public void CheckBestScore(){
+        if(score>SaveLoadManager.game.gameData.bestScore){
+            SaveLoadManager.game.gameData.bestScore = score;
+        }
+    }
 }
