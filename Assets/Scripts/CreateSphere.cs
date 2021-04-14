@@ -53,8 +53,6 @@ public class CreateSphere : MonoBehaviour
             touchOnScreen = true;
             Vector2 pos = Input.mousePosition;
             pointPosition = cam.ScreenToWorldPoint(pos);
-            Vector3 raypos = pos;
-            Vector3 raypos2 = pointPosition;
             activeSphere = CreateSphereOnScreen(pointPosition);
             if(!destroyable){
                 spheres.Enqueue(activeSphere);
