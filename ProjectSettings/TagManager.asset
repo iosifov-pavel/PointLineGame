@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - UI
   - NotUI
+  - SaveLoadManager
   layers:
   - Default
   - TransparentFX

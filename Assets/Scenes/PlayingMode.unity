@@ -943,9 +943,11 @@ MonoBehaviour:
   destroyable: 0
   startText: {fileID: 1514196466}
   pauseText: {fileID: 722679457}
+  PauseButton: {fileID: 1752739983}
   player: {fileID: 1698892500}
   maxScale: 10
   pause: 0
+  continuePressed: 0
   m_Raycaster: {fileID: 853540443}
   m_EventSystem: {fileID: 1536460225}
 --- !u!20 &519420031
@@ -3756,7 +3758,11 @@ MonoBehaviour:
   bounceShot: 0
   deadlyShot: 0
   stickyShot: 0
-  totalShot: 0
+  baseShield: 0
+  bounceShield: 0
+  deadlyShield: 0
+  stickyShield: 0
+  totalDestroyed: 0
   isFlying: 0
 --- !u!1 &1752739981
 GameObject:

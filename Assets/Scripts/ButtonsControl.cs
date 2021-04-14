@@ -32,11 +32,13 @@ public class ButtonsControl : MonoBehaviour
     public void PauseMenu(){
         Time.timeScale = 0;
         pauseControl.pause = true;
+        pauseControl.continuePressed = false;
         pausePanel.gameObject.SetActive(true);
         pauseText.gameObject.SetActive(true);
     }
 
     public void ContinueGame(){
+        pauseControl.continuePressed = true;
         pausePanel.gameObject.SetActive(false);
     }
 

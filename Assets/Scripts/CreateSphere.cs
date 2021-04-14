@@ -14,12 +14,14 @@ public class CreateSphere : MonoBehaviour
     [SerializeField] bool destroyable = false;
     [SerializeField] Text startText;
     [SerializeField] Text pauseText;
+    [SerializeField] Button PauseButton;
     [SerializeField] PlayerControler player;
     [SerializeField] float maxScale = 12f;
     int spheresCount = 0;
     bool startGame = false;
     GameObject activeSphere = null;
     public bool pause = false;
+    public bool continuePressed = false;
     Queue<GameObject> spheres = new Queue<GameObject>();
 
     [SerializeField] GraphicRaycaster m_Raycaster;
@@ -28,6 +30,7 @@ public class CreateSphere : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PauseButton.gameObject.SetActive(false);
         cam = Camera.main;
         Time.timeScale = 0;
     }
@@ -36,11 +39,13 @@ public class CreateSphere : MonoBehaviour
     void Update()
     {
         if(player.CheckDead()) return;
-        if(Input.GetMouseButton(0) && (!startGame || pause)){
+        if(Input.GetMouseButton(0) && ((!startGame) || (pause && continuePressed && startGame))){
             CheckUI();
             if(touchOnScreen) return;
             startGame = true;
             pause = false;
+            continuePressed = false;
+            PauseButton.gameObject.SetActive(true);
             startText.gameObject.SetActive(false);
             pauseText.gameObject.SetActive(false);
             Time.timeScale = 1f;
