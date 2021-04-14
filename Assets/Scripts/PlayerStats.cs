@@ -45,7 +45,12 @@ public class PlayerStats : MonoBehaviour
         }
         jumps++;
         int mJ = score - previousScore;
-        if(mJ >= maxJump) maxJump = mJ;    
+        if(mJ >= maxJump){
+            maxJump = mJ;
+            if(maxJump>SaveLoadManager.game.gameData.maxJump){
+                SaveLoadManager.game.gameData.maxJump = maxJump; 
+            }   
+        }  
         previousScore = score;
     }
 
@@ -84,9 +89,16 @@ public class PlayerStats : MonoBehaviour
         else baseShield++;
     }
 
-    public void CheckBestScore(){
+    public void CheckStats(){
         if(score>SaveLoadManager.game.gameData.bestScore){
             SaveLoadManager.game.gameData.bestScore = score;
         }
+        SaveLoadManager.game.gameData.totalScore+=score;
+        SaveLoadManager.game.gameData.totalJumps+=jumps;
+        SaveLoadManager.game.gameData.jumpPerPlay = (float)SaveLoadManager.game.gameData.totalJumps / (float)SaveLoadManager.game.gameData.death;
+        SaveLoadManager.game.gameData.scorePerPlay = (float)SaveLoadManager.game.gameData.totalScore / (float)SaveLoadManager.game.gameData.death;
+        SaveLoadManager.game.gameData.totalUps+=totalUps;
+        SaveLoadManager.game.gameData.totalDestroyedObstacle+=totalDestroyed;
+
     }
 }

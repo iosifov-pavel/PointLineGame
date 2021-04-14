@@ -83,6 +83,10 @@ public class Game{
     public int totalScore;
     public int totalJumps;
     public int maxJump;
+    public float jumpPerPlay;
+    public float scorePerPlay;
+    public int totalUps;
+    public int totalDestroyedObstacle;
     public Game(){
         death=0;
         points=0;
@@ -90,6 +94,10 @@ public class Game{
         totalScore=0;
         maxJump = 0;
         totalJumps=0;
+        jumpPerPlay=0f;
+        scorePerPlay=0f;
+        totalUps=0;
+        totalDestroyedObstacle=0;
     }
 }
 
