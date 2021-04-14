@@ -21,9 +21,8 @@ public class Bullet : MonoBehaviour
         || other.gameObject.tag=="Bonus" 
         || other.gameObject.tag=="Bounce") return;
         else{
-            if(isShield) PlayerStats.stats.obstacleByShield++;
-            else PlayerStats.stats.obstacleByBullet++;
-            PlayerStats.stats.GetShot(other.transform);
+            if(isShield) PlayerStats.stats.GetShield(other.transform);
+            else PlayerStats.stats.GetShot(other.transform);
             if(!isShield)Destroy(gameObject);
             Destroy(other.gameObject);
         }

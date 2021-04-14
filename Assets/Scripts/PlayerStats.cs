@@ -17,7 +17,9 @@ public class PlayerStats : MonoBehaviour
     public int maxShots = 0;
     public int nonUniqueTouches=0;
     public int baseTouch=0, bounceTouch=0, deadlyTouch=0, stickyTouch=0, totalTouch=0;
-    public int baseShot=0, bounceShot=0, deadlyShot=0, stickyShot=0, totalShot=0;
+    public int baseShot=0, bounceShot=0, deadlyShot=0, stickyShot=0;
+    public int baseShield=0, bounceShield=0, deadlyShield=0, stickyShield=0;
+    public int totalDestroyed=0;
     public bool isFlying = false;
     bool blockedCount = false;
 
@@ -56,7 +58,9 @@ public class PlayerStats : MonoBehaviour
     {
         totalUps = shieldUp+shootUp+flyUp+gravityUp;
         totalTouch = baseTouch+deadlyTouch+bounceTouch+stickyTouch;
-        totalShot = obstacleByBullet+obstacleByShield;
+        obstacleByBullet = baseShot + bounceShot + stickyShot + deadlyShot;
+        obstacleByShield = baseShield + bounceShield + stickyShield + deadlyShield;
+        totalDestroyed = obstacleByBullet+obstacleByShield;
     }
 
     public void GetTouch(Transform obstacle){
@@ -71,5 +75,12 @@ public class PlayerStats : MonoBehaviour
         else if(obstacle.gameObject.GetComponent<Sticky>()!=null) stickyShot++;
         else if(obstacle.gameObject.GetComponent<Bounce>()!=null) bounceShot++;
         else baseShot++;
+    }
+
+    public void GetShield(Transform obstacle){
+        if(obstacle.gameObject.GetComponent<DeathArea>()!=null) deadlyShield++;
+        else if(obstacle.gameObject.GetComponent<Sticky>()!=null) stickyShield++;
+        else if(obstacle.gameObject.GetComponent<Bounce>()!=null) bounceShield++;
+        else baseShield++;
     }
 }
