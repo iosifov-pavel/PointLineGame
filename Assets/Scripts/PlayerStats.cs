@@ -22,13 +22,13 @@ public class PlayerStats : MonoBehaviour
     public int totalDestroyed=0;
     public bool isFlying = false;
     bool blockedCount = false;
+    GooglePain pain;
 
     private void Awake() {
         stats = this;    
     }
     void Start()
     {
-
     }
 
     public void CalculateJump(){
@@ -90,8 +90,10 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void CheckStats(){
+        pain = FindObjectOfType<GooglePain>();
         if(score>SaveLoadManager.game.gameData.bestScore){
             SaveLoadManager.game.gameData.bestScore = score;
+            pain.SetBoardScore(score);
         }
         SaveLoadManager.game.gameData.totalScore+=score;
         SaveLoadManager.game.gameData.totalJumps+=jumps;

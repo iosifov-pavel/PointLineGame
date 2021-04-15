@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerControler : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Sprite dead;
+    [SerializeField] Sprite dead, normal;
     [SerializeField] Transform shield, shoot, engine, lowGravityTransform;
     [SerializeField] Button shootButton;
     [SerializeField] Text shootCount;
@@ -23,10 +23,13 @@ public class PlayerControler : MonoBehaviour
     bool activeShield = false, flying = false, canShoot = false, lowGravity = false;
     bool switchSide = false;
     bool canSwitch = false;
+    public bool wasRevived =false;
     public bool isStick = false;
     //public bool isDead = false;
     CircleCollider2D circleCollider;
     Rigidbody2D rbbody;
+    [SerializeField] Transform cameraT;
+    [SerializeField] Button ReviveButton;
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
@@ -139,6 +142,23 @@ public class PlayerControler : MonoBehaviour
         StartCoroutine(Wait());
 
     }
+
+    public void Revive(){
+        GetComponent<SpriteRenderer>().sprite = normal;
+        isDead = false;
+        defeatPanel.SetActive(false);
+        activeShield = true;
+        shield.gameObject.SetActive(true);
+        shieldTimer=0;
+        rbbody.velocity = Vector2.zero;
+        Vector3 newPos = cameraT.position;
+        newPos.y-=1;
+        newPos.z=0;
+        transform.position = newPos;
+        ReviveButton.gameObject.SetActive(false);
+
+    }
+
     IEnumerator Wait(){
         yield return new WaitForSeconds(1.5f);
         defeatPanel.SetActive(true);

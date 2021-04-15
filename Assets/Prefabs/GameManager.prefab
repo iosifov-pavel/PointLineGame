@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3887886709259104936}
   - component: {fileID: 3887886709259104939}
   - component: {fileID: 3887886709259104938}
+  - component: {fileID: 8686782970859891401}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: SaveLoadManager
@@ -63,3 +64,19 @@ MonoBehaviour:
     totalScore: 0
     totalJumps: 0
     maxJump: 0
+    jumpPerPlay: 0
+    scorePerPlay: 0
+    totalUps: 0
+    totalDestroyedObstacle: 0
+--- !u!114 &8686782970859891401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3887886709259104937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5fba9f43c26d444ae86b90f346877b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
