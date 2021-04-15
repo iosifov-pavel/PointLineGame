@@ -23,6 +23,19 @@ public class PlayerStats : MonoBehaviour
     public bool isFlying = false;
     bool blockedCount = false;
     GooglePain pain;
+    string firstBlood = "CgkIlo304KkXEAIQAg";
+    string thatWasEasy = "CgkIlo304KkXEAIQAw";
+    string wellPlayed = "CgkIlo304KkXEAIQBA";
+    string evenMoreFun = "CgkIlo304KkXEAIQBQ";
+    string littleAddicted = "CgkIlo304KkXEAIQBg";
+    string littleHero = "CgkIlo304KkXEAIQBw";
+    string hero = "CgkIlo304KkXEAIQCA";
+    string bigHero = "CgkIlo304KkXEAIQCQ";
+    string highJump = "CgkIlo304KkXEAIQCg";
+    string iLoveJumping = "CgkIlo304KkXEAIQCw";
+    string jumpAddicted = "CgkIlo304KkXEAIQDA";
+    string oneKmUP = "CgkIlo304KkXEAIQDQ";
+    string revive = "CgkIlo304KkXEAIQDg";
 
     private void Awake() {
         stats = this;    
@@ -91,6 +104,7 @@ public class PlayerStats : MonoBehaviour
 
     public void CheckStats(){
         pain = FindObjectOfType<GooglePain>();
+        Achivs();
         if(score>SaveLoadManager.game.gameData.bestScore){
             SaveLoadManager.game.gameData.bestScore = score;
             pain.SetBoardScore(score);
@@ -101,6 +115,25 @@ public class PlayerStats : MonoBehaviour
         SaveLoadManager.game.gameData.scorePerPlay = (float)SaveLoadManager.game.gameData.totalScore / (float)SaveLoadManager.game.gameData.death;
         SaveLoadManager.game.gameData.totalUps+=totalUps;
         SaveLoadManager.game.gameData.totalDestroyedObstacle+=totalDestroyed;
-
     }
+
+    void Achivs(){
+        pain.CheckAchivs(firstBlood);
+        if(jumps>=100) pain.CheckAchivs(iLoveJumping);
+        if(jumps>=250) pain.CheckAchivs(jumpAddicted);
+        if(SaveLoadManager.game.gameData.totalScore>=1000) pain.CheckAchivs(oneKmUP);
+        if(maxJump>=25) pain.CheckAchivs(highJump);
+        if(score==0) pain.CheckAchivs(thatWasEasy);
+        if(score>=100) pain.CheckAchivs(wellPlayed);
+        if(score>=200) pain.CheckAchivs(littleHero);
+        if(score>=350) pain.CheckAchivs(hero);
+        if(score>=500) pain.CheckAchivs(bigHero);
+        if(SaveLoadManager.game.gameData.death>=10) pain.CheckAchivs(evenMoreFun);
+        if(SaveLoadManager.game.gameData.death>=100) pain.CheckAchivs(littleAddicted);
+    }
+
+    public void ReviveAchiv(){
+        pain.CheckAchivs(revive);
+    }
+
 }

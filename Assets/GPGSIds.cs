@@ -24,7 +24,20 @@
 
 public static class GPGSIds
 {
+        public const string achievement_i_am_jump_addicted = "CgkIlo304KkXEAIQDA"; // <GPGSID>
+        public const string achievement_well_played = "CgkIlo304KkXEAIQBA"; // <GPGSID>
+        public const string achievement_high_jump = "CgkIlo304KkXEAIQCg"; // <GPGSID>
+        public const string achievement_even_more_fun = "CgkIlo304KkXEAIQBQ"; // <GPGSID>
+        public const string achievement_a_little_hero = "CgkIlo304KkXEAIQBw"; // <GPGSID>
         public const string leaderboard_max_score = "CgkIlo304KkXEAIQAQ"; // <GPGSID>
+        public const string achievement_thasts_for_free = "CgkIlo304KkXEAIQDg"; // <GPGSID>
+        public const string achievement_a_hero = "CgkIlo304KkXEAIQCA"; // <GPGSID>
+        public const string achievement_1_km_up = "CgkIlo304KkXEAIQDQ"; // <GPGSID>
+        public const string achievement_i_love_jumping = "CgkIlo304KkXEAIQCw"; // <GPGSID>
+        public const string achievement_that_was_easy = "CgkIlo304KkXEAIQAw"; // <GPGSID>
+        public const string achievement_a_big_hero = "CgkIlo304KkXEAIQCQ"; // <GPGSID>
+        public const string achievement_first_blood = "CgkIlo304KkXEAIQAg"; // <GPGSID>
+        public const string achievement_im_a_little_addicted = "CgkIlo304KkXEAIQBg"; // <GPGSID>
 
 }
 

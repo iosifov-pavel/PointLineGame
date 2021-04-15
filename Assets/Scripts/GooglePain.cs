@@ -10,6 +10,8 @@ public class GooglePain : MonoBehaviour
 {
     // Start is called before the first frame update
     private const string scoreboard = "CgkIlo304KkXEAIQAQ";
+
+
     void Start()
     {
         MobileAds.Initialize(initStaus =>{});
@@ -42,5 +44,13 @@ public class GooglePain : MonoBehaviour
 
     public void ShowLeaderBoard(){
         Social.ShowLeaderboardUI();
+    }
+
+    public void ShowAchivments(){
+        Social.ShowAchievementsUI();
+    }
+
+    public void CheckAchivs(string id){
+        Social.ReportProgress(id,100,(bool sucsess)=>{});
     }
 }

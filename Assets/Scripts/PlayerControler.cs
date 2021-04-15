@@ -156,7 +156,7 @@ public class PlayerControler : MonoBehaviour
         newPos.z=0;
         transform.position = newPos;
         ReviveButton.gameObject.SetActive(false);
-
+        PlayerStats.stats.ReviveAchiv();
     }
 
     IEnumerator Wait(){
