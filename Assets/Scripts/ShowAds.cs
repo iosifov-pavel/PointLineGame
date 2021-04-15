@@ -79,7 +79,6 @@ public class ShowAds : MonoBehaviour
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardedAdClosed event received");
-        control.adWasWatched = false;
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)

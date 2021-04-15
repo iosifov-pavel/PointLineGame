@@ -13,6 +13,7 @@ public class GooglePain : MonoBehaviour
     void Start()
     {
         MobileAds.Initialize(initStaus =>{});
+        Autentification();
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class GooglePain : MonoBehaviour
     public void Autentification(){
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
-        Social.localUser.Authenticate(sucsess =>{
+        Social.localUser.Authenticate((bool sucsess) =>{
             if(sucsess) Debug.Log("Wow");
             else Debug.Log("Auch");
         });
