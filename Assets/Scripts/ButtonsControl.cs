@@ -74,4 +74,8 @@ public class ButtonsControl : MonoBehaviour
         ShowAds sads = ads.GetComponent<ShowAds>();
         sads.UserChoseToWatchAd();
     }
+
+    public void OpenCustomizeWindow(){
+        
+    }
 }
